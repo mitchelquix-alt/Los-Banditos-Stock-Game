@@ -6,50 +6,50 @@
 <title>Los Banditos Stock Race 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0b0e;--sf:#171419;--sf2:#1f1b23;--bd:#2d2733;--tx:#eae6ef;--mt:#908898;--gold:#e8a825;--grn:#2dd67e;--red:#f04848}
+:root{--bg:#f5f3f0;--sf:#ffffff;--sf2:#f0ede8;--bd:#e0dbd4;--tx:#1a1a1a;--mt:#6b6560;--gold:#c88a10;--grn:#1a8a4a;--red:#d43030}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(232,168,37,.04)0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(108,92,231,.04)0%,transparent 60%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(200,138,16,.04)0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(108,92,231,.03)0%,transparent 60%);pointer-events:none;z-index:0}
 .c{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 header{padding:40px 0 28px;text-align:center;position:relative}
 header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(232,168,37,.15),rgba(232,168,37,.04));border:1px solid rgba(232,168,37,.2);padding:5px 14px;border-radius:99px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
-h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,7vw,72px);line-height:1.05;color:var(--gold);text-shadow:0 0 60px rgba(232,168,37,.15);margin-bottom:6px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(200,138,16,.12),rgba(200,138,16,.04));border:1px solid rgba(200,138,16,.25);padding:5px 14px;border-radius:99px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,7vw,72px);line-height:1.05;color:var(--gold);text-shadow:0 0 60px rgba(200,138,16,.1);margin-bottom:6px}
 .sub{color:var(--mt);font-size:15px}
 .upd{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mt);background:var(--sf);border:1px solid var(--bd);padding:3px 10px;border-radius:6px}
 .tabs{display:flex;gap:3px;justify-content:center;margin:28px 0 20px;background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:3px;width:fit-content;margin-left:auto;margin-right:auto;flex-wrap:wrap}
 .tab{padding:9px 20px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;color:var(--mt);transition:all .2s;border:none;background:none;font-family:inherit}
-.tab:hover{color:var(--tx)}.tab.active{background:var(--gold);color:#0d0b0e;box-shadow:0 2px 10px rgba(232,168,37,.3)}
+.tab:hover{color:var(--tx)}.tab.active{background:var(--gold);color:#fff;box-shadow:0 2px 10px rgba(200,138,16,.25)}
 .sec{display:none;animation:fi .35s ease}.sec.active{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.box{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:28px;margin-bottom:28px;position:relative;overflow:hidden}
-.box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ff6b6b,#ffa63d,#5bf0a5,#6c5ce7,#fd79a8,#00cec9)}
+.box{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:28px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#e05050,#e08830,#30b868,#6c5ce7,#e06090,#00aca0)}
 .rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px}
-.rt{font-family:'Abril Fatface',serif;font-size:22px}
+.rt{font-family:'Abril Fatface',serif;font-size:22px;color:var(--tx)}
 .rd{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold);font-weight:700}
 .cw{position:relative;height:400px;margin-bottom:16px}.cw canvas{width:100%!important;height:100%!important}
 .rc{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
 .btn{padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--bd);background:var(--sf2);color:var(--tx);font-family:inherit;transition:all .2s}
-.btn:hover{border-color:var(--gold);background:rgba(232,168,37,.08)}
-.btn.p{background:var(--gold);color:#0d0b0e;border-color:var(--gold)}.btn.p:hover{background:#f5c030}
+.btn:hover{border-color:var(--gold);background:rgba(200,138,16,.08)}
+.btn.p{background:var(--gold);color:#fff;border-color:var(--gold)}.btn.p:hover{background:#d89818}
 .lb{display:grid;gap:12px;margin-bottom:28px}
-.lc{display:grid;grid-template-columns:52px 56px 1fr auto;align-items:center;gap:14px;padding:18px 20px;background:var(--sf);border:1px solid var(--bd);border-radius:12px;transition:all .25s}
-.lc:hover{border-color:rgba(232,168,37,.3);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
-.lc.f1{border-color:rgba(232,168,37,.35);background:linear-gradient(135deg,var(--sf),rgba(232,168,37,.04))}
-.rk{font-family:'Abril Fatface',serif;font-size:28px;text-align:center}.rk.g{color:var(--gold)}.rk.s{color:#c0c0c0}.rk.b{color:#cd7f32}
+.lc{display:grid;grid-template-columns:52px 56px 1fr auto;align-items:center;gap:14px;padding:18px 20px;background:var(--sf);border:1px solid var(--bd);border-radius:12px;transition:all .25s;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.lc:hover{border-color:rgba(200,138,16,.35);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.lc.f1{border-color:rgba(200,138,16,.4);background:linear-gradient(135deg,var(--sf),rgba(200,138,16,.06))}
+.rk{font-family:'Abril Fatface',serif;font-size:28px;text-align:center;color:var(--mt)}.rk.g{color:var(--gold)}.rk.s{color:#a0a0a0}.rk.b{color:#b07030}
 .avatar{width:48px;height:48px;border-radius:50%;border:2px solid var(--bd);overflow:hidden;flex-shrink:0}
 .avatar svg{width:100%;height:100%;display:block}
-.li h3{font-size:15px;font-weight:700;margin-bottom:3px}
+.li h3{font-size:15px;font-weight:700;margin-bottom:3px;color:var(--tx)}
 .lm{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.lm span{font-size:12px;color:var(--mt)}
 .stag{font-family:'JetBrains Mono',monospace;background:var(--sf2);padding:2px 7px;border-radius:4px;font-size:11px}
 .gdir{font-size:11px;color:var(--mt);margin-top:2px}
 .lv{text-align:right}.lp{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700}.le{font-size:12px;color:var(--mt);font-family:'JetBrains Mono',monospace}
 .pos{color:var(--grn)}.neg{color:var(--red)}
 .gs{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px;margin-bottom:28px}
-.gc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:22px;position:relative;overflow:hidden}
+.gc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:22px;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.03)}
 .gc::after{content:'🎁';position:absolute;top:-8px;right:-4px;font-size:48px;opacity:.06}
 .gft{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.gp{text-align:center;min-width:70px}.gp .nm{font-weight:700;font-size:14px}.gp .rl{font-size:10px;color:var(--mt);text-transform:uppercase;letter-spacing:1px}
+.gp{text-align:center;min-width:70px}.gp .nm{font-weight:700;font-size:14px;color:var(--tx)}.gp .rl{font-size:10px;color:var(--mt);text-transform:uppercase;letter-spacing:1px}
 .ga{font-size:18px;color:var(--gold)}
 .gsk{display:flex;align-items:center;gap:12px;padding:12px;background:var(--sf2);border-radius:8px;margin-bottom:14px}
 .glogo{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#fff;flex-shrink:0}
@@ -58,7 +58,7 @@ h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,7vw,72px);line-height:
 .gpr{font-size:12px;color:var(--mt);font-family:'JetBrains Mono',monospace}
 .gpv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px}
 .sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:24px}
-.sc{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:16px;text-align:center}
+.sc{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:16px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.03)}
 .sl{font-size:11px;color:var(--mt);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
 .sv{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700}
 .loading{text-align:center;padding:60px;color:var(--mt);font-size:16px}
@@ -104,22 +104,22 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
 const avatars = {};
 
 // REMCO: Short brown hair styled up, clean-shaven, strong jaw, brown eyes, big white smile, grey hoodie
-avatars.Remco = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c0a0"/><ellipse cx="50" cy="30" rx="28" ry="18" fill="#6b4a2e"/><path d="M24 34Q35 20 50 18Q65 20 76 34Q72 24 50 18Q28 24 24 34Z" fill="#5a3d22"/><path d="M30 34Q40 26 50 24Q60 26 70 34Q65 28 50 25Q35 28 30 34Z" fill="#7a5838"/><path d="M42 30Q50 22 58 30" fill="#7a5838"/><ellipse cx="38" cy="50" rx="4.5" ry="5" fill="#fff"/><circle cx="39" cy="50" r="2.8" fill="#3a2010"/><circle cx="40" cy="49" r="1" fill="#fff"/><ellipse cx="62" cy="50" rx="4.5" ry="5" fill="#fff"/><circle cx="63" cy="50" r="2.8" fill="#3a2010"/><circle cx="64" cy="49" r="1" fill="#fff"/><path d="M29 45Q37 42 46 45" stroke="#5a3d22" stroke-width="2.2" fill="none"/><path d="M54 45Q63 42 71 45" stroke="#5a3d22" stroke-width="2.2" fill="none"/><ellipse cx="50" cy="58" rx="5" ry="2.5" fill="#e0a888"/><path d="M38 65Q44 74 50 74Q56 74 62 65" stroke="#c04030" stroke-width="2" fill="#e84848"/><path d="M40 67Q45 70 50 70Q55 70 60 67" fill="#fff"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#4a4a5a"/><path d="M38 80L42 90 50 82 58 90 62 80" fill="#4a4a5a" stroke="#555568" stroke-width="0.5"/></svg>`;
+avatars.Remco = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#e8e4e0"/><circle cx="50" cy="54" r="34" fill="#f0c0a0"/><ellipse cx="50" cy="30" rx="28" ry="18" fill="#6b4a2e"/><path d="M24 34Q35 20 50 18Q65 20 76 34Q72 24 50 18Q28 24 24 34Z" fill="#5a3d22"/><path d="M30 34Q40 26 50 24Q60 26 70 34Q65 28 50 25Q35 28 30 34Z" fill="#7a5838"/><path d="M42 30Q50 22 58 30" fill="#7a5838"/><ellipse cx="38" cy="50" rx="4.5" ry="5" fill="#fff"/><circle cx="39" cy="50" r="2.8" fill="#3a2010"/><circle cx="40" cy="49" r="1" fill="#fff"/><ellipse cx="62" cy="50" rx="4.5" ry="5" fill="#fff"/><circle cx="63" cy="50" r="2.8" fill="#3a2010"/><circle cx="64" cy="49" r="1" fill="#fff"/><path d="M29 45Q37 42 46 45" stroke="#5a3d22" stroke-width="2.2" fill="none"/><path d="M54 45Q63 42 71 45" stroke="#5a3d22" stroke-width="2.2" fill="none"/><ellipse cx="50" cy="58" rx="5" ry="2.5" fill="#e0a888"/><path d="M38 65Q44 74 50 74Q56 74 62 65" stroke="#c04030" stroke-width="2" fill="#e84848"/><path d="M40 67Q45 70 50 70Q55 70 60 67" fill="#fff"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#4a4a5a"/><path d="M38 80L42 90 50 82 58 90 62 80" fill="#4a4a5a" stroke="#555568" stroke-width="0.5"/></svg>`;
 
 // MITCHEL: Dark wavy/curly hair, full dark beard, blue eyes, sunglasses on head, big smile, white tee
-avatars.Mitchel = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c8a8"/><ellipse cx="50" cy="28" rx="30" ry="22" fill="#1c0e06"/><path d="M22 36Q30 18 50 14Q70 18 78 36Q74 22 50 16Q26 22 22 36Z" fill="#0e0604"/><path d="M22 34Q26 30 30 32Q28 36 24 38Z" fill="#1c0e06"/><path d="M78 34Q74 30 70 32Q72 36 76 38Z" fill="#1c0e06"/><path d="M30 20Q40 14 50 13Q60 14 70 20" stroke="#333" stroke-width="3" fill="none" opacity="0.6"/><rect x="30" y="16" width="8" height="4" rx="2" fill="#222" opacity="0.7"/><rect x="62" y="16" width="8" height="4" rx="2" fill="#222" opacity="0.7"/><line x1="38" y1="18" x2="62" y2="18" stroke="#333" stroke-width="1.5" opacity="0.5"/><path d="M26 58Q24 68 30 76Q38 84 50 82Q62 84 70 76Q76 68 74 58" fill="#1c0e06"/><path d="M34 70Q42 78 50 76Q58 78 66 70Q60 74 50 73Q40 74 34 70Z" fill="#1c0e06"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#4a7ab5"/><circle cx="39" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#4a7ab5"/><circle cx="63" cy="47" r="0.8" fill="#fff"/><path d="M29 43Q37 39 46 43" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M54 43Q63 39 71 43" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M40 63Q45 69 50 69Q55 69 60 63" stroke="#c04030" stroke-width="2" fill="#e04040"/><path d="M42 64Q46 67 50 67Q54 67 58 64" fill="#fff"/><rect x="22" y="82" width="56" height="18" rx="3" fill="#f0f0f0"/></svg>`;
+avatars.Mitchel = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#e8e4e0"/><circle cx="50" cy="54" r="34" fill="#f0c8a8"/><ellipse cx="50" cy="28" rx="30" ry="22" fill="#1c0e06"/><path d="M22 36Q30 18 50 14Q70 18 78 36Q74 22 50 16Q26 22 22 36Z" fill="#0e0604"/><path d="M22 34Q26 30 30 32Q28 36 24 38Z" fill="#1c0e06"/><path d="M78 34Q74 30 70 32Q72 36 76 38Z" fill="#1c0e06"/><path d="M30 20Q40 14 50 13Q60 14 70 20" stroke="#333" stroke-width="3" fill="none" opacity="0.6"/><rect x="30" y="16" width="8" height="4" rx="2" fill="#222" opacity="0.7"/><rect x="62" y="16" width="8" height="4" rx="2" fill="#222" opacity="0.7"/><line x1="38" y1="18" x2="62" y2="18" stroke="#333" stroke-width="1.5" opacity="0.5"/><path d="M26 58Q24 68 30 76Q38 84 50 82Q62 84 70 76Q76 68 74 58" fill="#1c0e06"/><path d="M34 70Q42 78 50 76Q58 78 66 70Q60 74 50 73Q40 74 34 70Z" fill="#1c0e06"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#4a7ab5"/><circle cx="39" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#4a7ab5"/><circle cx="63" cy="47" r="0.8" fill="#fff"/><path d="M29 43Q37 39 46 43" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M54 43Q63 39 71 43" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M40 63Q45 69 50 69Q55 69 60 63" stroke="#c04030" stroke-width="2" fill="#e04040"/><path d="M42 64Q46 67 50 67Q54 67 58 64" fill="#fff"/><rect x="22" y="82" width="56" height="18" rx="3" fill="#f0f0f0"/></svg>`;
 
 // ERIC: Short dark hair slicked/combed back, light stubble, warm brown skin, brown eyes, pink/red adidas tee
-avatars.Eric = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#c89870"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#0e0604"/><path d="M26 36Q35 20 50 18Q65 20 74 36Q70 22 50 16Q30 22 26 36Z" fill="#060302"/><path d="M28 34Q38 28 50 26Q62 28 72 34Q65 30 50 28Q35 30 28 34Z" fill="#1a0e06"/><ellipse cx="38" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="50" r="2.5" fill="#2a1808"/><circle cx="39" cy="49" r="0.8" fill="#fff"/><ellipse cx="62" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="50" r="2.5" fill="#2a1808"/><circle cx="63" cy="49" r="0.8" fill="#fff"/><path d="M30 46Q38 43 46 46" stroke="#1a0e06" stroke-width="2" fill="none"/><path d="M54 46Q62 43 70 46" stroke="#1a0e06" stroke-width="2" fill="none"/><ellipse cx="50" cy="57" rx="4.5" ry="2.5" fill="#b88860"/><rect x="34" y="62" rx="1" width="32" height="3" fill="none"/><circle cx="38" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="42" cy="63" r="0.5" fill="#8a7060" opacity="0.4"/><circle cx="46" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="50" cy="63" r="0.5" fill="#8a7060" opacity="0.3"/><circle cx="54" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="58" cy="63" r="0.5" fill="#8a7060" opacity="0.4"/><circle cx="62" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><path d="M42 66Q50 72 58 66" stroke="#a06050" stroke-width="1.5" fill="none"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#c06068"/><line x1="30" y1="82" x2="30" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/><line x1="33" y1="82" x2="33" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/><line x1="36" y1="82" x2="36" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/></svg>`;
+avatars.Eric = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#e8e4e0"/><circle cx="50" cy="54" r="34" fill="#c89870"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#0e0604"/><path d="M26 36Q35 20 50 18Q65 20 74 36Q70 22 50 16Q30 22 26 36Z" fill="#060302"/><path d="M28 34Q38 28 50 26Q62 28 72 34Q65 30 50 28Q35 30 28 34Z" fill="#1a0e06"/><ellipse cx="38" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="50" r="2.5" fill="#2a1808"/><circle cx="39" cy="49" r="0.8" fill="#fff"/><ellipse cx="62" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="50" r="2.5" fill="#2a1808"/><circle cx="63" cy="49" r="0.8" fill="#fff"/><path d="M30 46Q38 43 46 46" stroke="#1a0e06" stroke-width="2" fill="none"/><path d="M54 46Q62 43 70 46" stroke="#1a0e06" stroke-width="2" fill="none"/><ellipse cx="50" cy="57" rx="4.5" ry="2.5" fill="#b88860"/><rect x="34" y="62" rx="1" width="32" height="3" fill="none"/><circle cx="38" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="42" cy="63" r="0.5" fill="#8a7060" opacity="0.4"/><circle cx="46" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="50" cy="63" r="0.5" fill="#8a7060" opacity="0.3"/><circle cx="54" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="58" cy="63" r="0.5" fill="#8a7060" opacity="0.4"/><circle cx="62" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><path d="M42 66Q50 72 58 66" stroke="#a06050" stroke-width="1.5" fill="none"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#c06068"/><line x1="30" y1="82" x2="30" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/><line x1="33" y1="82" x2="33" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/><line x1="36" y1="82" x2="36" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/></svg>`;
 
 // LARS: Bald/shaved head, short trimmed beard, round friendly face, brown eyes, patterned button shirt
-avatars.Lars = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="52" r="36" fill="#f0c8a8"/><ellipse cx="50" cy="28" rx="30" ry="14" fill="#f0c8a8"/><path d="M22 38Q30 26 50 24Q70 26 78 38Q74 30 50 28Q26 30 22 38Z" fill="#e0b898" opacity="0.4"/><path d="M30 62Q28 70 34 76Q40 80 46 76" stroke="#6b4a2e" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M70 62Q72 70 66 76Q60 80 54 76" stroke="#6b4a2e" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M36 74Q42 82 50 80Q58 82 64 74Q58 78 50 77Q42 78 36 74Z" fill="#6b4a2e" opacity="0.8"/><path d="M32 66Q40 62 50 62Q60 62 68 66" stroke="#6b4a2e" stroke-width="1.5" fill="none" opacity="0.5"/><ellipse cx="38" cy="48" rx="4.5" ry="5" fill="#fff"/><circle cx="39" cy="48" r="2.8" fill="#3a2518"/><circle cx="40" cy="47" r="0.9" fill="#fff"/><ellipse cx="62" cy="48" rx="4.5" ry="5" fill="#fff"/><circle cx="63" cy="48" r="2.8" fill="#3a2518"/><circle cx="64" cy="47" r="0.9" fill="#fff"/><path d="M30 44Q38 40 46 44" stroke="#7a6050" stroke-width="2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#7a6050" stroke-width="2" fill="none"/><ellipse cx="50" cy="56" rx="5" ry="2.8" fill="#e0b898"/><path d="M40 66Q50 74 60 66" stroke="#c04030" stroke-width="2" fill="#e04040"/><path d="M43 68Q50 72 57 68" fill="#fff"/><rect x="20" y="82" width="60" height="18" rx="4" fill="#3a3a5a"/><circle cx="35" cy="88" r="1" fill="#8888aa" opacity="0.5"/><circle cx="42" cy="85" r="1" fill="#8888aa" opacity="0.5"/><circle cx="50" cy="88" r="1" fill="#8888aa" opacity="0.5"/><circle cx="58" cy="85" r="1" fill="#8888aa" opacity="0.5"/><circle cx="65" cy="88" r="1" fill="#8888aa" opacity="0.5"/></svg>`;
+avatars.Lars = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#e8e4e0"/><circle cx="50" cy="52" r="36" fill="#f0c8a8"/><ellipse cx="50" cy="28" rx="30" ry="14" fill="#f0c8a8"/><path d="M22 38Q30 26 50 24Q70 26 78 38Q74 30 50 28Q26 30 22 38Z" fill="#e0b898" opacity="0.4"/><path d="M30 62Q28 70 34 76Q40 80 46 76" stroke="#6b4a2e" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M70 62Q72 70 66 76Q60 80 54 76" stroke="#6b4a2e" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M36 74Q42 82 50 80Q58 82 64 74Q58 78 50 77Q42 78 36 74Z" fill="#6b4a2e" opacity="0.8"/><path d="M32 66Q40 62 50 62Q60 62 68 66" stroke="#6b4a2e" stroke-width="1.5" fill="none" opacity="0.5"/><ellipse cx="38" cy="48" rx="4.5" ry="5" fill="#fff"/><circle cx="39" cy="48" r="2.8" fill="#3a2518"/><circle cx="40" cy="47" r="0.9" fill="#fff"/><ellipse cx="62" cy="48" rx="4.5" ry="5" fill="#fff"/><circle cx="63" cy="48" r="2.8" fill="#3a2518"/><circle cx="64" cy="47" r="0.9" fill="#fff"/><path d="M30 44Q38 40 46 44" stroke="#7a6050" stroke-width="2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#7a6050" stroke-width="2" fill="none"/><ellipse cx="50" cy="56" rx="5" ry="2.8" fill="#e0b898"/><path d="M40 66Q50 74 60 66" stroke="#c04030" stroke-width="2" fill="#e04040"/><path d="M43 68Q50 72 57 68" fill="#fff"/><rect x="20" y="82" width="60" height="18" rx="4" fill="#3a3a5a"/><circle cx="35" cy="88" r="1" fill="#8888aa" opacity="0.5"/><circle cx="42" cy="85" r="1" fill="#8888aa" opacity="0.5"/><circle cx="50" cy="88" r="1" fill="#8888aa" opacity="0.5"/><circle cx="58" cy="85" r="1" fill="#8888aa" opacity="0.5"/><circle cx="65" cy="88" r="1" fill="#8888aa" opacity="0.5"/></svg>`;
 
 // RICK: Light brown/blonde hair, round thin glasses, blue eyes, clean-shaven, slim face, white linen shirt
-avatars.Rick = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="32" fill="#f5dcc0"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#a08060"/><path d="M26 36Q36 20 50 18Q64 20 74 36Q70 22 50 16Q30 22 26 36Z" fill="#8a6848"/><path d="M28 34Q38 28 50 26Q62 28 72 34Q64 30 50 28Q36 30 28 34Z" fill="#b09070"/><circle cx="38" cy="48" r="10" fill="none" stroke="#c0a888" stroke-width="2"/><circle cx="62" cy="48" r="10" fill="none" stroke="#c0a888" stroke-width="2"/><line x1="48" y1="48" x2="52" y2="48" stroke="#c0a888" stroke-width="1.5"/><line x1="28" y1="46" x2="24" y2="44" stroke="#c0a888" stroke-width="1.5"/><line x1="72" y1="46" x2="76" y2="44" stroke="#c0a888" stroke-width="1.5"/><ellipse cx="38" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="38" cy="48" r="2.3" fill="#5888b8"/><circle cx="39" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="62" cy="48" r="2.3" fill="#5888b8"/><circle cx="63" cy="47" r="0.8" fill="#fff"/><path d="M30 43Q37 40 45 43" stroke="#8a7050" stroke-width="1.8" fill="none"/><path d="M55 43Q63 40 70 43" stroke="#8a7050" stroke-width="1.8" fill="none"/><ellipse cx="50" cy="57" rx="4" ry="2" fill="#eacca8"/><path d="M42 65Q50 72 58 65" stroke="#c04030" stroke-width="2" fill="#e04848"/><path d="M44 66Q50 70 56 66" fill="#fff"/><rect x="22" y="80" width="56" height="20" rx="4" fill="#f5f0e8"/><path d="M42 80L50 86 58 80" fill="none" stroke="#e8e0d0" stroke-width="1.5"/></svg>`;
+avatars.Rick = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#e8e4e0"/><circle cx="50" cy="54" r="32" fill="#f5dcc0"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#a08060"/><path d="M26 36Q36 20 50 18Q64 20 74 36Q70 22 50 16Q30 22 26 36Z" fill="#8a6848"/><path d="M28 34Q38 28 50 26Q62 28 72 34Q64 30 50 28Q36 30 28 34Z" fill="#b09070"/><circle cx="38" cy="48" r="10" fill="none" stroke="#c0a888" stroke-width="2"/><circle cx="62" cy="48" r="10" fill="none" stroke="#c0a888" stroke-width="2"/><line x1="48" y1="48" x2="52" y2="48" stroke="#c0a888" stroke-width="1.5"/><line x1="28" y1="46" x2="24" y2="44" stroke="#c0a888" stroke-width="1.5"/><line x1="72" y1="46" x2="76" y2="44" stroke="#c0a888" stroke-width="1.5"/><ellipse cx="38" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="38" cy="48" r="2.3" fill="#5888b8"/><circle cx="39" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="62" cy="48" r="2.3" fill="#5888b8"/><circle cx="63" cy="47" r="0.8" fill="#fff"/><path d="M30 43Q37 40 45 43" stroke="#8a7050" stroke-width="1.8" fill="none"/><path d="M55 43Q63 40 70 43" stroke="#8a7050" stroke-width="1.8" fill="none"/><ellipse cx="50" cy="57" rx="4" ry="2" fill="#eacca8"/><path d="M42 65Q50 72 58 65" stroke="#c04030" stroke-width="2" fill="#e04848"/><path d="M44 66Q50 70 56 66" fill="#fff"/><rect x="22" y="80" width="56" height="20" rx="4" fill="#f5f0e8"/><path d="M42 80L50 86 58 80" fill="none" stroke="#e8e0d0" stroke-width="1.5"/></svg>`;
 
 // MATIJS: Medium brown hair, receding hairline, trimmed goatee/beard, brown eyes, white polo with green logo
-avatars.Matijs = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c8a8"/><ellipse cx="50" cy="30" rx="24" ry="16" fill="#5a3d22"/><path d="M28 38Q34 22 50 20Q66 22 72 38Q68 26 50 22Q32 26 28 38Z" fill="#4a3018"/><path d="M30 36Q42 28 50 26Q58 28 70 36Q62 30 50 28Q38 30 30 36Z" fill="#6b4a2e"/><path d="M32 36Q38 32 44 36" fill="#f0c8a8"/><path d="M56 36Q62 32 68 36" fill="#f0c8a8"/><path d="M34 60Q32 68 36 74Q42 78 48 74" stroke="#4a3018" stroke-width="2.5" fill="none"/><path d="M66 60Q68 68 64 74Q58 78 52 74" stroke="#4a3018" stroke-width="2.5" fill="none"/><path d="M40 72Q46 78 50 77Q54 78 60 72Q55 76 50 75Q45 76 40 72Z" fill="#4a3018"/><path d="M44 64Q50 60 56 64" stroke="#4a3018" stroke-width="2" fill="none"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="39" cy="48" r="2.5" fill="#3a2518"/><circle cx="40" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="63" cy="48" r="2.5" fill="#3a2518"/><circle cx="64" cy="47" r="0.8" fill="#fff"/><path d="M30 44Q38 40 46 44" stroke="#4a3018" stroke-width="2.2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#4a3018" stroke-width="2.2" fill="none"/><ellipse cx="50" cy="56" rx="5" ry="2.5" fill="#e0b898"/><path d="M42 64Q50 69 58 64" stroke="#c04030" stroke-width="1.8" fill="#d84838"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#f5f0e8"/><path d="M40 80L44 82 50 80 56 82 60 80" fill="none" stroke="#e0d8d0" stroke-width="1"/><circle cx="50" cy="86" r="2.5" fill="#2a8a3a"/></svg>`;
+avatars.Matijs = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#e8e4e0"/><circle cx="50" cy="54" r="34" fill="#f0c8a8"/><ellipse cx="50" cy="30" rx="24" ry="16" fill="#5a3d22"/><path d="M28 38Q34 22 50 20Q66 22 72 38Q68 26 50 22Q32 26 28 38Z" fill="#4a3018"/><path d="M30 36Q42 28 50 26Q58 28 70 36Q62 30 50 28Q38 30 30 36Z" fill="#6b4a2e"/><path d="M32 36Q38 32 44 36" fill="#f0c8a8"/><path d="M56 36Q62 32 68 36" fill="#f0c8a8"/><path d="M34 60Q32 68 36 74Q42 78 48 74" stroke="#4a3018" stroke-width="2.5" fill="none"/><path d="M66 60Q68 68 64 74Q58 78 52 74" stroke="#4a3018" stroke-width="2.5" fill="none"/><path d="M40 72Q46 78 50 77Q54 78 60 72Q55 76 50 75Q45 76 40 72Z" fill="#4a3018"/><path d="M44 64Q50 60 56 64" stroke="#4a3018" stroke-width="2" fill="none"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="39" cy="48" r="2.5" fill="#3a2518"/><circle cx="40" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="63" cy="48" r="2.5" fill="#3a2518"/><circle cx="64" cy="47" r="0.8" fill="#fff"/><path d="M30 44Q38 40 46 44" stroke="#4a3018" stroke-width="2.2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#4a3018" stroke-width="2.2" fill="none"/><ellipse cx="50" cy="56" rx="5" ry="2.5" fill="#e0b898"/><path d="M42 64Q50 69 58 64" stroke="#c04030" stroke-width="1.8" fill="#d84838"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#f5f0e8"/><path d="M40 80L44 82 50 80 56 82 60 80" fill="none" stroke="#e0d8d0" stroke-width="1"/><circle cx="50" cy="86" r="2.5" fill="#2a8a3a"/></svg>`;
 
 const logos = {
   HOOD:{bg:'#00C805',letter:'R',name:'Robinhood'},
@@ -278,7 +278,7 @@ function buildRaceChart() {
         legend: {
           position: 'bottom',
           labels: {
-            color: '#ffffff',
+            color: '#1a1a1a',
             font: { family: "'JetBrains Mono',monospace", size: 12, weight: 'bold' },
             padding: 16, usePointStyle: true, pointStyle: 'circle', boxWidth: 12,
             generateLabels: ch => ch.data.datasets.map((ds, i) => ({
@@ -289,7 +289,8 @@ function buildRaceChart() {
           }
         },
         tooltip: {
-          backgroundColor: '#1f1b23', borderColor: '#2d2733', borderWidth: 1,
+          backgroundColor: '#fff', borderColor: '#e0dbd4', borderWidth: 1,
+          titleColor: '#1a1a1a', bodyColor: '#1a1a1a',
           titleFont: { family: "'DM Sans',sans-serif", weight: '700', size: 13 },
           bodyFont: { family: "'JetBrains Mono',monospace", size: 12 },
           callbacks: {
@@ -304,17 +305,17 @@ function buildRaceChart() {
       },
       scales: {
         x: {
-          grid: { color: 'rgba(255,255,255,.03)' },
+          grid: { color: 'rgba(0,0,0,.06)' },
           ticks: {
-            color: '#ffffff',
+            color: '#6b6560',
             font: { family: "'DM Sans',sans-serif", size: 10 },
             maxRotation: 0, autoSkip: true, maxTicksLimit: 12
           }
         },
         y: {
-          grid: { color: 'rgba(255,255,255,.04)' },
+          grid: { color: 'rgba(0,0,0,.06)' },
           ticks: {
-            color: '#908898',
+            color: '#6b6560',
             font: { family: "'JetBrains Mono',monospace", size: 11 },
             callback: v => (v >= 0 ? '+' : '') + v + '%'
           }
@@ -500,14 +501,15 @@ function buildBar() {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: '#1f1b23', borderColor: '#2d2733', borderWidth: 1,
+          backgroundColor: '#fff', borderColor: '#e0dbd4', borderWidth: 1,
+          titleColor: '#1a1a1a', bodyColor: '#1a1a1a',
           bodyFont: { family: "'JetBrains Mono',monospace", size: 13 },
           callbacks: { label: c => (c.raw>=0?'+':'') + c.raw.toFixed(1) + '%' }
         }
       },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#908898', font: { family: "'JetBrains Mono',monospace", size: 11 }, callback: v => (v>=0?'+':'') + v + '%' }},
-        y: { grid: { display: false }, ticks: { color: '#eae6ef', font: { family: "'DM Sans',sans-serif", size: 12, weight: '600' }}}
+        x: { grid: { color: 'rgba(0,0,0,.06)' }, ticks: { color: '#6b6560', font: { family: "'JetBrains Mono',monospace", size: 11 }, callback: v => (v>=0?'+':'') + v + '%' }},
+        y: { grid: { display: false }, ticks: { color: '#1a1a1a', font: { family: "'DM Sans',sans-serif", size: 12, weight: '600' }}}
       }
     }
   });
