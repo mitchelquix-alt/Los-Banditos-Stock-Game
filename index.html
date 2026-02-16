@@ -13,6 +13,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .c{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 header{padding:40px 0 28px;text-align:center;position:relative}
 header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.banner-img{width:100%;max-width:800px;height:auto;border-radius:12px;margin:0 auto 24px;display:block;box-shadow:0 4px 12px rgba(0,0,0,0.08);border:1px solid var(--bd)}
 .badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(200,138,16,.12),rgba(200,138,16,.04));border:1px solid rgba(200,138,16,.25);padding:5px 14px;border-radius:99px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
 h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,7vw,72px);line-height:1.05;color:var(--gold);text-shadow:0 0 60px rgba(200,138,16,.1);margin-bottom:6px}
 .sub{color:var(--mt);font-size:15px}
@@ -70,6 +71,8 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
 <body>
 <div class="c">
   <header>
+    <img src="Gemini_Generated_Image_6nmwuf6nmwuf6nmw.jpg" alt="Los Banditos Stock Challenge" class="banner-img">
+    
     <div class="badge">🤠 Los Banditos</div>
     <h1>Stock Race 2026</h1>
     <p class="sub">6 amigos · 6 stocks · €100 each · May the best bandito win</p>
@@ -132,11 +135,11 @@ const logos = {
 
 /* ===== STOCK CONFIG (static - who gave what to whom) ===== */
 const CONFIG = [
-  {r:'Mitchel',g:'Lars',   s:'Robinhood',         t:'HOOD',cl:'#ff6b6b'},
-  {r:'Lars',   g:'Matijs', s:'The Trade Desk',     t:'TTD', cl:'#ffa63d'},
-  {r:'Eric',   g:'Remco',  s:'Genmab ADR',         t:'GMAB',cl:'#5bf0a5'},
+  {r:'Mitchel',g:'Lars',   s:'Robinhood',          t:'HOOD',cl:'#ff6b6b'},
+  {r:'Lars',   g:'Matijs', s:'The Trade Desk',      t:'TTD', cl:'#ffa63d'},
+  {r:'Eric',   g:'Remco',  s:'Genmab ADR',          t:'GMAB',cl:'#5bf0a5'},
   {r:'Remco',  g:'Rick',   s:'Twenty One Capital',  t:'XXI', cl:'#6c5ce7'},
-  {r:'Rick',   g:'Mitchel',s:'Shift4 Payments',     t:'FOUR',cl:'#fd79a8'},
+  {r:'Rick',   g:'Mitchel',s:'Shift4 Payments',      t:'FOUR',cl:'#fd79a8'},
   {r:'Matijs', g:'Eric',   s:'VanEck Defense ETF',  t:'DFEN',cl:'#00cec9'},
 ];
 
@@ -227,13 +230,22 @@ function buildRaceChart() {
   
   // Pre-compute YTD% for each stock on each date
   raceYTD = {};
+  let allValues = []; // Store all values to find absolute min/max
+  
   S.forEach(d => {
     raceYTD[d.t] = raceDates.map(dt => {
       const price = d.daily[dt];
       if (price === undefined) return null;
-      return Math.round(((price - d.p0) / d.p0) * 10000) / 100;
+      const val = Math.round(((price - d.p0) / d.p0) * 10000) / 100;
+      allValues.push(val);
+      return val;
     });
   });
+
+  // CALCULATE FIXED Y-AXIS RANGES (Prevents jumping)
+  const minVal = Math.min(...allValues, 0); // Include 0 to ensure start point is covered
+  const maxVal = Math.max(...allValues, 0);
+  const padding = (maxVal - minVal) * 0.1; // 10% padding
   
   // Build full-year labels (Jan through Dec, ~21 trading days/month)
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -313,6 +325,9 @@ function buildRaceChart() {
           }
         },
         y: {
+          /* FIXED Y-AXIS CONFIGURATION */
+          min: Math.floor(minVal - padding),
+          max: Math.ceil(maxVal + padding),
           grid: { color: 'rgba(0,0,0,.06)' },
           ticks: {
             color: '#6b6560',
