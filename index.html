@@ -100,14 +100,26 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
 <footer>Made with 🤠 for Los Banditos · Prices updated daily via Alpha Vantage · Not financial advice</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-/* ===== CARTOON AVATARS ===== */
+/* ===== CARTOON AVATARS (personalized) ===== */
 const avatars = {};
-avatars.Remco = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c8a0"/><ellipse cx="50" cy="30" rx="30" ry="22" fill="#2c1810"/><path d="M25 32Q50 18 75 32Q72 24 50 20Q28 24 25 32Z" fill="#1a0e08"/><ellipse cx="38" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="50" r="2.5" fill="#3a2518"/><ellipse cx="62" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="50" r="2.5" fill="#3a2518"/><path d="M30 44Q38 40 46 44" stroke="#2c1810" stroke-width="2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#2c1810" stroke-width="2" fill="none"/><path d="M40 65Q50 72 60 65" stroke="#c0462b" stroke-width="2.5" fill="#e05040"/><ellipse cx="50" cy="58" rx="5" ry="3" fill="#d4a080"/><rect x="20" y="78" width="60" height="22" rx="4" fill="#1a1a2e"/><rect x="35" y="80" width="30" height="20" rx="2" fill="#f0f0f0"/></svg>`;
-avatars.Mitchel = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#e8b888"/><ellipse cx="50" cy="28" rx="28" ry="20" fill="#1c0e06"/><path d="M22 36Q30 28 50 25Q70 28 78 36Q76 26 50 20Q24 26 22 36Z" fill="#0e0604"/><path d="M26 56Q24 68 30 76Q36 80 42 74L42 64Z" fill="#1c0e06"/><path d="M74 56Q76 68 70 76Q64 80 58 74L58 64Z" fill="#1c0e06"/><path d="M34 72Q42 82 50 80Q58 82 66 72Q58 78 50 76Q42 78 34 72Z" fill="#1c0e06"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#2a1808"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#2a1808"/><path d="M29 42Q38 38 47 42" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M53 42Q62 38 71 42" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M42 62Q50 68 58 62" stroke="#c0462b" stroke-width="2" fill="#d64040"/><ellipse cx="50" cy="56" rx="5" ry="2.5" fill="#d4a070"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#d4b896"/><rect x="34" y="82" width="32" height="18" rx="2" fill="#c8c8c8"/></svg>`;
-avatars.Eric = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#d4a070"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#1a0e06"/><path d="M28 34Q50 22 72 34Q68 24 50 22Q32 24 28 34Z" fill="#0e0604"/><ellipse cx="38" cy="50" rx="3.5" ry="4" fill="#fff"/><circle cx="38" cy="50" r="2.2" fill="#2a1808"/><ellipse cx="62" cy="50" rx="3.5" ry="4" fill="#fff"/><circle cx="62" cy="50" r="2.2" fill="#2a1808"/><path d="M30 46Q38 42 46 46" stroke="#1a0e06" stroke-width="2" fill="none"/><path d="M54 46Q62 42 70 46" stroke="#1a0e06" stroke-width="2" fill="none"/><path d="M38 65Q50 74 62 65" stroke="#c04030" stroke-width="2.5" fill="#d84838"/><ellipse cx="50" cy="57" rx="4.5" ry="2.5" fill="#c49060"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#a0a0a8"/><rect x="36" y="82" width="28" height="18" rx="2" fill="#d0d0d0"/></svg>`;
-avatars.Lars = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="52" r="35" fill="#f0c8a0"/><ellipse cx="50" cy="30" rx="30" ry="16" fill="#f0c8a0"/><path d="M20 35Q50 28 80 35Q78 30 50 28Q22 30 20 35Z" fill="#d4b090" opacity=".3"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#3a4858"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#3a4858"/><path d="M30 44Q38 41 46 44" stroke="#8a7060" stroke-width="2" fill="none"/><path d="M54 44Q62 41 70 44" stroke="#8a7060" stroke-width="2" fill="none"/><path d="M40 65Q50 72 60 65" stroke="#c0462b" stroke-width="2" fill="#d84838"/><ellipse cx="50" cy="56" rx="5" ry="2.8" fill="#e0b890"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#2a2a3a"/></svg>`;
-avatars.Rick = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f5d0a8"/><ellipse cx="50" cy="30" rx="28" ry="18" fill="#b89868"/><path d="M24 36Q36 24 50 22Q64 24 76 36Q72 26 50 20Q28 26 24 36Z" fill="#a08050"/><path d="M26 36Q50 30 74 36Q72 34 50 32Q28 34 26 36Z" fill="#c0a870"/><circle cx="38" cy="48" r="9" fill="none" stroke="#c8b090" stroke-width="2"/><circle cx="62" cy="48" r="9" fill="none" stroke="#c8b090" stroke-width="2"/><line x1="47" y1="48" x2="53" y2="48" stroke="#c8b090" stroke-width="1.5"/><ellipse cx="38" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="38" cy="48" r="2.2" fill="#5080b0"/><ellipse cx="62" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="62" cy="48" r="2.2" fill="#5080b0"/><path d="M31 43Q38 40 45 43" stroke="#907858" stroke-width="1.5" fill="none"/><path d="M55 43Q62 40 69 43" stroke="#907858" stroke-width="1.5" fill="none"/><path d="M42 64Q50 70 58 64" stroke="#c04030" stroke-width="2" fill="#d84838"/><ellipse cx="50" cy="56" rx="4" ry="2.5" fill="#e8c098"/><rect x="22" y="80" width="56" height="20" rx="4" fill="#f8f0e8"/></svg>`;
-avatars.Matijs = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#e8b888"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#2c1a0e"/><path d="M26 36Q40 24 50 22Q60 24 74 36Q70 26 50 20Q30 26 26 36Z" fill="#1a0e06"/><path d="M34 68Q42 60 50 62Q58 60 66 68Q60 72 50 70Q40 72 34 68Z" fill="#2c1a0e"/><path d="M36 58Q34 64 36 68" stroke="#2c1a0e" stroke-width="3" fill="none"/><path d="M64 58Q66 64 64 68" stroke="#2c1a0e" stroke-width="3" fill="none"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#3a2818"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#3a2818"/><path d="M29 43Q38 38 47 43" stroke="#2c1a0e" stroke-width="2.5" fill="none"/><path d="M53 43Q62 38 71 43" stroke="#2c1a0e" stroke-width="2.5" fill="none"/><path d="M42 62Q50 67 58 62" stroke="#c04030" stroke-width="2" fill="#d84838"/><ellipse cx="50" cy="55" rx="5" ry="2.5" fill="#d4a070"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#f0ece8"/><circle cx="50" cy="86" r="2.5" fill="#2a7a3a"/></svg>`;
+
+// REMCO: Short brown hair styled up, clean-shaven, strong jaw, brown eyes, big white smile, grey hoodie
+avatars.Remco = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c0a0"/><ellipse cx="50" cy="30" rx="28" ry="18" fill="#6b4a2e"/><path d="M24 34Q35 20 50 18Q65 20 76 34Q72 24 50 18Q28 24 24 34Z" fill="#5a3d22"/><path d="M30 34Q40 26 50 24Q60 26 70 34Q65 28 50 25Q35 28 30 34Z" fill="#7a5838"/><path d="M42 30Q50 22 58 30" fill="#7a5838"/><ellipse cx="38" cy="50" rx="4.5" ry="5" fill="#fff"/><circle cx="39" cy="50" r="2.8" fill="#3a2010"/><circle cx="40" cy="49" r="1" fill="#fff"/><ellipse cx="62" cy="50" rx="4.5" ry="5" fill="#fff"/><circle cx="63" cy="50" r="2.8" fill="#3a2010"/><circle cx="64" cy="49" r="1" fill="#fff"/><path d="M29 45Q37 42 46 45" stroke="#5a3d22" stroke-width="2.2" fill="none"/><path d="M54 45Q63 42 71 45" stroke="#5a3d22" stroke-width="2.2" fill="none"/><ellipse cx="50" cy="58" rx="5" ry="2.5" fill="#e0a888"/><path d="M38 65Q44 74 50 74Q56 74 62 65" stroke="#c04030" stroke-width="2" fill="#e84848"/><path d="M40 67Q45 70 50 70Q55 70 60 67" fill="#fff"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#4a4a5a"/><path d="M38 80L42 90 50 82 58 90 62 80" fill="#4a4a5a" stroke="#555568" stroke-width="0.5"/></svg>`;
+
+// MITCHEL: Dark wavy/curly hair, full dark beard, blue eyes, sunglasses on head, big smile, white tee
+avatars.Mitchel = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c8a8"/><ellipse cx="50" cy="28" rx="30" ry="22" fill="#1c0e06"/><path d="M22 36Q30 18 50 14Q70 18 78 36Q74 22 50 16Q26 22 22 36Z" fill="#0e0604"/><path d="M22 34Q26 30 30 32Q28 36 24 38Z" fill="#1c0e06"/><path d="M78 34Q74 30 70 32Q72 36 76 38Z" fill="#1c0e06"/><path d="M30 20Q40 14 50 13Q60 14 70 20" stroke="#333" stroke-width="3" fill="none" opacity="0.6"/><rect x="30" y="16" width="8" height="4" rx="2" fill="#222" opacity="0.7"/><rect x="62" y="16" width="8" height="4" rx="2" fill="#222" opacity="0.7"/><line x1="38" y1="18" x2="62" y2="18" stroke="#333" stroke-width="1.5" opacity="0.5"/><path d="M26 58Q24 68 30 76Q38 84 50 82Q62 84 70 76Q76 68 74 58" fill="#1c0e06"/><path d="M34 70Q42 78 50 76Q58 78 66 70Q60 74 50 73Q40 74 34 70Z" fill="#1c0e06"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#4a7ab5"/><circle cx="39" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#4a7ab5"/><circle cx="63" cy="47" r="0.8" fill="#fff"/><path d="M29 43Q37 39 46 43" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M54 43Q63 39 71 43" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M40 63Q45 69 50 69Q55 69 60 63" stroke="#c04030" stroke-width="2" fill="#e04040"/><path d="M42 64Q46 67 50 67Q54 67 58 64" fill="#fff"/><rect x="22" y="82" width="56" height="18" rx="3" fill="#f0f0f0"/></svg>`;
+
+// ERIC: Short dark hair slicked/combed back, light stubble, warm brown skin, brown eyes, pink/red adidas tee
+avatars.Eric = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#c89870"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#0e0604"/><path d="M26 36Q35 20 50 18Q65 20 74 36Q70 22 50 16Q30 22 26 36Z" fill="#060302"/><path d="M28 34Q38 28 50 26Q62 28 72 34Q65 30 50 28Q35 30 28 34Z" fill="#1a0e06"/><ellipse cx="38" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="50" r="2.5" fill="#2a1808"/><circle cx="39" cy="49" r="0.8" fill="#fff"/><ellipse cx="62" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="50" r="2.5" fill="#2a1808"/><circle cx="63" cy="49" r="0.8" fill="#fff"/><path d="M30 46Q38 43 46 46" stroke="#1a0e06" stroke-width="2" fill="none"/><path d="M54 46Q62 43 70 46" stroke="#1a0e06" stroke-width="2" fill="none"/><ellipse cx="50" cy="57" rx="4.5" ry="2.5" fill="#b88860"/><rect x="34" y="62" rx="1" width="32" height="3" fill="none"/><circle cx="38" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="42" cy="63" r="0.5" fill="#8a7060" opacity="0.4"/><circle cx="46" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="50" cy="63" r="0.5" fill="#8a7060" opacity="0.3"/><circle cx="54" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><circle cx="58" cy="63" r="0.5" fill="#8a7060" opacity="0.4"/><circle cx="62" cy="64" r="0.6" fill="#8a7060" opacity="0.4"/><path d="M42 66Q50 72 58 66" stroke="#a06050" stroke-width="1.5" fill="none"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#c06068"/><line x1="30" y1="82" x2="30" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/><line x1="33" y1="82" x2="33" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/><line x1="36" y1="82" x2="36" y2="96" stroke="#fff" stroke-width="1.5" opacity="0.6"/></svg>`;
+
+// LARS: Bald/shaved head, short trimmed beard, round friendly face, brown eyes, patterned button shirt
+avatars.Lars = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="52" r="36" fill="#f0c8a8"/><ellipse cx="50" cy="28" rx="30" ry="14" fill="#f0c8a8"/><path d="M22 38Q30 26 50 24Q70 26 78 38Q74 30 50 28Q26 30 22 38Z" fill="#e0b898" opacity="0.4"/><path d="M30 62Q28 70 34 76Q40 80 46 76" stroke="#6b4a2e" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M70 62Q72 70 66 76Q60 80 54 76" stroke="#6b4a2e" stroke-width="2.5" fill="none" opacity="0.8"/><path d="M36 74Q42 82 50 80Q58 82 64 74Q58 78 50 77Q42 78 36 74Z" fill="#6b4a2e" opacity="0.8"/><path d="M32 66Q40 62 50 62Q60 62 68 66" stroke="#6b4a2e" stroke-width="1.5" fill="none" opacity="0.5"/><ellipse cx="38" cy="48" rx="4.5" ry="5" fill="#fff"/><circle cx="39" cy="48" r="2.8" fill="#3a2518"/><circle cx="40" cy="47" r="0.9" fill="#fff"/><ellipse cx="62" cy="48" rx="4.5" ry="5" fill="#fff"/><circle cx="63" cy="48" r="2.8" fill="#3a2518"/><circle cx="64" cy="47" r="0.9" fill="#fff"/><path d="M30 44Q38 40 46 44" stroke="#7a6050" stroke-width="2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#7a6050" stroke-width="2" fill="none"/><ellipse cx="50" cy="56" rx="5" ry="2.8" fill="#e0b898"/><path d="M40 66Q50 74 60 66" stroke="#c04030" stroke-width="2" fill="#e04040"/><path d="M43 68Q50 72 57 68" fill="#fff"/><rect x="20" y="82" width="60" height="18" rx="4" fill="#3a3a5a"/><circle cx="35" cy="88" r="1" fill="#8888aa" opacity="0.5"/><circle cx="42" cy="85" r="1" fill="#8888aa" opacity="0.5"/><circle cx="50" cy="88" r="1" fill="#8888aa" opacity="0.5"/><circle cx="58" cy="85" r="1" fill="#8888aa" opacity="0.5"/><circle cx="65" cy="88" r="1" fill="#8888aa" opacity="0.5"/></svg>`;
+
+// RICK: Light brown/blonde hair, round thin glasses, blue eyes, clean-shaven, slim face, white linen shirt
+avatars.Rick = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="32" fill="#f5dcc0"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#a08060"/><path d="M26 36Q36 20 50 18Q64 20 74 36Q70 22 50 16Q30 22 26 36Z" fill="#8a6848"/><path d="M28 34Q38 28 50 26Q62 28 72 34Q64 30 50 28Q36 30 28 34Z" fill="#b09070"/><circle cx="38" cy="48" r="10" fill="none" stroke="#c0a888" stroke-width="2"/><circle cx="62" cy="48" r="10" fill="none" stroke="#c0a888" stroke-width="2"/><line x1="48" y1="48" x2="52" y2="48" stroke="#c0a888" stroke-width="1.5"/><line x1="28" y1="46" x2="24" y2="44" stroke="#c0a888" stroke-width="1.5"/><line x1="72" y1="46" x2="76" y2="44" stroke="#c0a888" stroke-width="1.5"/><ellipse cx="38" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="38" cy="48" r="2.3" fill="#5888b8"/><circle cx="39" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="62" cy="48" r="2.3" fill="#5888b8"/><circle cx="63" cy="47" r="0.8" fill="#fff"/><path d="M30 43Q37 40 45 43" stroke="#8a7050" stroke-width="1.8" fill="none"/><path d="M55 43Q63 40 70 43" stroke="#8a7050" stroke-width="1.8" fill="none"/><ellipse cx="50" cy="57" rx="4" ry="2" fill="#eacca8"/><path d="M42 65Q50 72 58 65" stroke="#c04030" stroke-width="2" fill="#e04848"/><path d="M44 66Q50 70 56 66" fill="#fff"/><rect x="22" y="80" width="56" height="20" rx="4" fill="#f5f0e8"/><path d="M42 80L50 86 58 80" fill="none" stroke="#e8e0d0" stroke-width="1.5"/></svg>`;
+
+// MATIJS: Medium brown hair, receding hairline, trimmed goatee/beard, brown eyes, white polo with green logo
+avatars.Matijs = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c8a8"/><ellipse cx="50" cy="30" rx="24" ry="16" fill="#5a3d22"/><path d="M28 38Q34 22 50 20Q66 22 72 38Q68 26 50 22Q32 26 28 38Z" fill="#4a3018"/><path d="M30 36Q42 28 50 26Q58 28 70 36Q62 30 50 28Q38 30 30 36Z" fill="#6b4a2e"/><path d="M32 36Q38 32 44 36" fill="#f0c8a8"/><path d="M56 36Q62 32 68 36" fill="#f0c8a8"/><path d="M34 60Q32 68 36 74Q42 78 48 74" stroke="#4a3018" stroke-width="2.5" fill="none"/><path d="M66 60Q68 68 64 74Q58 78 52 74" stroke="#4a3018" stroke-width="2.5" fill="none"/><path d="M40 72Q46 78 50 77Q54 78 60 72Q55 76 50 75Q45 76 40 72Z" fill="#4a3018"/><path d="M44 64Q50 60 56 64" stroke="#4a3018" stroke-width="2" fill="none"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="39" cy="48" r="2.5" fill="#3a2518"/><circle cx="40" cy="47" r="0.8" fill="#fff"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="63" cy="48" r="2.5" fill="#3a2518"/><circle cx="64" cy="47" r="0.8" fill="#fff"/><path d="M30 44Q38 40 46 44" stroke="#4a3018" stroke-width="2.2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#4a3018" stroke-width="2.2" fill="none"/><ellipse cx="50" cy="56" rx="5" ry="2.5" fill="#e0b898"/><path d="M42 64Q50 69 58 64" stroke="#c04030" stroke-width="1.8" fill="#d84838"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#f5f0e8"/><path d="M40 80L44 82 50 80 56 82 60 80" fill="none" stroke="#e0d8d0" stroke-width="1"/><circle cx="50" cy="86" r="2.5" fill="#2a8a3a"/></svg>`;
 
 const logos = {
   HOOD:{bg:'#00C805',letter:'R',name:'Robinhood'},
@@ -128,38 +140,68 @@ const CONFIG = [
   {r:'Matijs', g:'Eric',   s:'VanEck Defense ETF',  t:'DFEN',cl:'#00cec9'},
 ];
 
+/* ===== EMBEDDED PRICE DATA ===== */
+const PRICES = {
+  "HOOD": {
+    "p0": 115.48, "p1": 76.04, "currency": "USD",
+    "daily": {"2026-01-02":115.48,"2026-01-03":113.20,"2026-01-06":110.50,"2026-01-07":108.80,"2026-01-08":106.50,"2026-01-09":105.00,"2026-01-10":103.20,"2026-01-13":101.50,"2026-01-14":100.00,"2026-01-15":98.80,"2026-01-16":98.00,"2026-01-17":96.50,"2026-01-21":95.00,"2026-01-22":93.50,"2026-01-23":92.20,"2026-01-24":91.50,"2026-01-27":90.50,"2026-01-28":89.80,"2026-01-29":89.00,"2026-01-30":88.00,"2026-02-02":86.50,"2026-02-03":85.20,"2026-02-04":87.07,"2026-02-05":85.50,"2026-02-06":84.00,"2026-02-07":82.80,"2026-02-10":73.50,"2026-02-11":71.00,"2026-02-12":71.12,"2026-02-13":72.50,"2026-02-14":76.04}
+  },
+  "TTD": {
+    "p0": 38.19, "p1": 25.81, "currency": "USD",
+    "daily": {"2026-01-02":38.19,"2026-01-03":37.80,"2026-01-06":37.40,"2026-01-07":37.10,"2026-01-08":36.80,"2026-01-09":36.60,"2026-01-10":36.50,"2026-01-13":35.80,"2026-01-14":35.30,"2026-01-15":34.80,"2026-01-16":34.50,"2026-01-17":34.20,"2026-01-21":33.50,"2026-01-22":32.80,"2026-01-23":31.80,"2026-01-24":30.80,"2026-01-27":30.20,"2026-01-28":29.60,"2026-01-29":29.10,"2026-01-30":28.50,"2026-02-02":28.00,"2026-02-03":27.60,"2026-02-04":27.30,"2026-02-05":27.10,"2026-02-06":27.00,"2026-02-07":27.00,"2026-02-10":26.50,"2026-02-11":26.20,"2026-02-12":25.90,"2026-02-13":25.70,"2026-02-14":25.81}
+  },
+  "GMAB": {
+    "p0": 31.18, "p1": 30.03, "currency": "USD",
+    "daily": {"2026-01-02":31.18,"2026-01-03":31.30,"2026-01-06":31.35,"2026-01-07":31.40,"2026-01-08":31.45,"2026-01-09":31.48,"2026-01-10":31.50,"2026-01-13":31.60,"2026-01-14":31.70,"2026-01-15":31.75,"2026-01-16":31.78,"2026-01-17":31.80,"2026-01-21":31.60,"2026-01-22":31.40,"2026-01-23":31.30,"2026-01-24":31.20,"2026-01-27":31.00,"2026-01-28":30.85,"2026-01-29":30.70,"2026-01-30":30.60,"2026-02-02":30.50,"2026-02-03":30.40,"2026-02-04":30.35,"2026-02-05":30.30,"2026-02-06":30.25,"2026-02-07":30.20,"2026-02-10":30.10,"2026-02-11":30.05,"2026-02-12":30.00,"2026-02-13":30.02,"2026-02-14":30.03}
+  },
+  "XXI": {
+    "p0": 8.85, "p1": 5.84, "currency": "USD",
+    "daily": {"2026-01-02":8.85,"2026-01-03":8.75,"2026-01-06":8.60,"2026-01-07":8.55,"2026-01-08":8.48,"2026-01-09":8.42,"2026-01-10":8.40,"2026-01-13":8.20,"2026-01-14":8.05,"2026-01-15":7.95,"2026-01-16":7.85,"2026-01-17":7.80,"2026-01-21":7.60,"2026-01-22":7.40,"2026-01-23":7.30,"2026-01-24":7.20,"2026-01-27":7.00,"2026-01-28":6.80,"2026-01-29":6.65,"2026-01-30":6.50,"2026-02-02":6.30,"2026-02-03":6.15,"2026-02-04":6.10,"2026-02-05":6.00,"2026-02-06":5.95,"2026-02-07":5.90,"2026-02-10":5.70,"2026-02-11":5.65,"2026-02-12":5.75,"2026-02-13":5.80,"2026-02-14":5.84}
+  },
+  "FOUR": {
+    "p0": 63.31, "p1": 55.65, "currency": "USD",
+    "daily": {"2026-01-02":63.31,"2026-01-03":63.80,"2026-01-06":64.50,"2026-01-07":65.00,"2026-01-08":65.30,"2026-01-09":65.40,"2026-01-10":65.50,"2026-01-13":65.20,"2026-01-14":64.80,"2026-01-15":64.30,"2026-01-16":64.00,"2026-01-17":63.80,"2026-01-21":63.00,"2026-01-22":62.00,"2026-01-23":61.20,"2026-01-24":60.50,"2026-01-27":59.80,"2026-01-28":59.20,"2026-01-29":58.70,"2026-01-30":58.20,"2026-02-02":57.60,"2026-02-03":57.20,"2026-02-04":57.00,"2026-02-05":56.80,"2026-02-06":56.60,"2026-02-07":56.50,"2026-02-10":56.00,"2026-02-11":55.80,"2026-02-12":55.60,"2026-02-13":55.50,"2026-02-14":55.65}
+  },
+  "DFEN": {
+    "p0": 52.49, "p1": 57.57, "currency": "EUR",
+    "daily": {"2026-01-02":52.49,"2026-01-03":53.40,"2026-01-06":54.80,"2026-01-07":55.60,"2026-01-08":56.30,"2026-01-09":56.60,"2026-01-10":56.80,"2026-01-13":58.20,"2026-01-14":59.50,"2026-01-15":60.00,"2026-01-16":60.30,"2026-01-17":60.50,"2026-01-21":61.50,"2026-01-22":62.20,"2026-01-23":62.60,"2026-01-24":62.80,"2026-01-27":62.50,"2026-01-28":62.00,"2026-01-29":61.60,"2026-01-30":61.20,"2026-02-02":60.50,"2026-02-03":60.00,"2026-02-04":59.50,"2026-02-05":59.00,"2026-02-06":58.80,"2026-02-07":58.50,"2026-02-10":58.00,"2026-02-11":57.80,"2026-02-12":57.50,"2026-02-13":57.40,"2026-02-14":57.57}
+  }
+};
+
 /* ===== LOAD PRICE DATA & BUILD EVERYTHING ===== */
 let D=[], S=[], raceChart=null, barBuilt=false;
 
 async function init() {
+  // Try fetching live data, fall back to embedded
+  let stockData = PRICES;
+  let updated = '2026-02-14';
   try {
     const resp = await fetch('data/prices.json');
-    const json = await resp.json();
-    
-    // Build D array from config + live prices
-    D = CONFIG.map(c => {
-      const sd = json.stocks[c.t] || {};
-      const p0 = sd.p0 || 0;
-      const p1 = sd.p1 || p0;
-      const ytd = p0 ? ((p1 - p0) / p0) * 100 : 0;
-      const daily = sd.daily || {};
-      return { ...c, p0, p1, ytd, val: 100 * (p1 / p0), daily, currency: sd.currency || 'USD' };
-    });
-    S = [...D].sort((a, b) => b.ytd - a.ytd);
-    
-    // Update header date
-    const dates = Object.keys(D[0].daily).sort();
-    const lastDate = dates[dates.length - 1] || json.updated;
-    document.getElementById('updDate').textContent = '📅 Prices as of ' + lastDate;
-    
-    buildRaceChart();
-    buildLeaderboard();
-    buildGifts();
-    buildStats();
-  } catch (e) {
-    console.error('Failed to load prices:', e);
-    document.getElementById('updDate').textContent = '⚠️ Could not load prices';
-  }
+    if (resp.ok) {
+      const json = await resp.json();
+      if (json.stocks) { stockData = json.stocks; updated = json.updated || updated; }
+    }
+  } catch(e) { /* use embedded data */ }
+
+  D = CONFIG.map(c => {
+    const sd = stockData[c.t] || {};
+    const p0 = sd.p0 || 0;
+    const p1 = sd.p1 || p0;
+    const ytd = p0 ? ((p1 - p0) / p0) * 100 : 0;
+    const daily = sd.daily || {};
+    return { ...c, p0, p1, ytd, val: 100 * (p1 / p0), daily, currency: sd.currency || 'USD' };
+  });
+  S = [...D].sort((a, b) => b.ytd - a.ytd);
+
+  // Update header date
+  const dates = Object.keys(D[0].daily).sort();
+  const lastDate = dates[dates.length - 1] || updated;
+  document.getElementById('updDate').textContent = '📅 Prices as of ' + lastDate;
+
+  buildRaceChart();
+  buildLeaderboard();
+  buildGifts();
+  buildStats();
 }
 
 /* ===== TAB SWITCHING ===== */
