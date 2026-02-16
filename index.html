@@ -4,16 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Los Banditos Stock Race 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f5f3f0;--sf:#ffffff;--sf2:#f0ede8;--bd:#e0dbd4;--tx:#1a1a1a;--mt:#6b6560;--gold:#c88a10;--grn:#1a8a4a;--red:#d43030}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(200,138,16,.04)0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(108,92,231,.03)0%,transparent 60%);pointer-events:none;z-index:0}
 .c{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 header{padding:40px 0 28px;text-align:center;position:relative}
 header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.banner-img{width:100%;max-width:800px;height:auto;border-radius:12px;margin:0 auto 24px;display:block;box-shadow:0 4px 12px rgba(0,0,0,0.08);border:1px solid var(--bd)}
 .badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(200,138,16,.12),rgba(200,138,16,.04));border:1px solid rgba(200,138,16,.25);padding:5px 14px;border-radius:99px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
 h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,7vw,72px);line-height:1.05;color:var(--gold);text-shadow:0 0 60px rgba(200,138,16,.1);margin-bottom:6px}
 .sub{color:var(--mt);font-size:15px}
@@ -63,6 +62,30 @@ h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,7vw,72px);line-height:
 .sl{font-size:11px;color:var(--mt);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
 .sv{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700}
 .loading{text-align:center;padding:60px;color:var(--mt);font-size:16px}
+.banner-img{width:100%;max-width:900px;height:auto;border-radius:12px;margin:0 auto 24px;display:block;box-shadow:0 4px 12px rgba(0,0,0,0.08);border:1px solid var(--bd)}
+.article-list{display:grid;gap:16px;margin-bottom:28px}
+.article-card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:24px;cursor:pointer;transition:all .25s;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.article-card:hover{border-color:rgba(200,138,16,.35);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.article-card h3{font-size:18px;font-weight:700;margin-bottom:6px;color:var(--tx)}
+.article-card .article-meta{font-size:12px;color:var(--mt);margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.article-card .article-preview{font-size:14px;color:var(--mt);line-height:1.6}
+.article-card .article-tag{display:inline-block;background:var(--sf2);border:1px solid var(--bd);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;color:var(--gold);margin-right:6px}
+.article-full{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:40px;margin-bottom:28px;box-shadow:0 2px 8px rgba(0,0,0,.04);line-height:1.8;font-size:15px}
+.article-full h2{font-family:'Abril Fatface',serif;font-size:28px;color:var(--gold);margin:32px 0 16px}
+.article-full h3{font-size:18px;font-weight:700;margin:24px 0 12px;color:var(--tx)}
+.article-full p{margin-bottom:16px;color:var(--tx)}
+.article-full .article-header{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--bd)}
+.article-full .article-header h1{font-family:'Abril Fatface',serif;font-size:clamp(24px,5vw,42px);color:var(--gold);margin-bottom:8px}
+.article-full .article-header .meta{font-size:13px;color:var(--mt);font-family:'JetBrains Mono',monospace}
+.article-full blockquote{border-left:3px solid var(--gold);padding:12px 20px;margin:20px 0;background:var(--sf2);border-radius:0 8px 8px 0;font-style:italic;color:var(--mt)}
+.article-full .highlight-box{background:var(--sf2);border:1px solid var(--bd);border-radius:10px;padding:20px;margin:20px 0}
+.article-full strong{color:var(--tx)}
+.article-full .back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--bd);background:var(--sf2);color:var(--tx);font-family:inherit;transition:all .2s;margin-bottom:20px}
+.article-full .back-btn:hover{border-color:var(--gold);background:rgba(200,138,16,.08)}
+.article-full .toc{background:var(--sf2);border:1px solid var(--bd);border-radius:10px;padding:20px;margin:20px 0}
+.article-full .toc h3{margin-top:0}
+.article-full .toc ol{padding-left:20px;color:var(--mt)}
+.article-full .toc li{margin-bottom:4px;font-size:14px}
 footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
 @keyframes cf{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
 @media(max-width:768px){.box{padding:16px}.gs{grid-template-columns:1fr}.sg{grid-template-columns:1fr 1fr}.cw{height:300px}.tab{padding:7px 14px;font-size:12px}.lc{grid-template-columns:36px 42px 1fr auto;gap:8px;padding:14px}.avatar{width:38px;height:38px}}
@@ -71,8 +94,7 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
 <body>
 <div class="c">
   <header>
-    <img src="Gemini_Generated_Image_6nmwuf6nmwuf6nmw.jpg" alt="Los Banditos Stock Challenge" class="banner-img">
-    
+    <img src="Gemini_Generated_Image_6nmwuf6nmwuf6nmw.png" alt="Los Banditos Stock Challenge" class="banner-img">
     <div class="badge">🤠 Los Banditos</div>
     <h1>Stock Race 2026</h1>
     <p class="sub">6 amigos · 6 stocks · €100 each · May the best bandito win</p>
@@ -83,6 +105,7 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
     <button class="tab" onclick="switchTab('lb')">🏆 Standings</button>
     <button class="tab" onclick="switchTab('gifts')">🎁 Gifts</button>
     <button class="tab" onclick="switchTab('stats')">📊 Stats</button>
+    <button class="tab" onclick="switchTab('articles')">📝 Articles</button>
   </div>
   <div id="race" class="sec active">
     <div class="box">
@@ -99,6 +122,17 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
   <div id="lb" class="sec"><div id="lbC" class="lb"></div></div>
   <div id="gifts" class="sec"><div id="gfC" class="gs"></div></div>
   <div id="stats" class="sec"><div id="stG" class="sg"></div><div class="box"><div class="rt" style="margin-bottom:16px">📈 YTD Performance</div><div class="cw"><canvas id="bC"></canvas></div></div></div>
+  <div id="articles" class="sec">
+    <div id="articleList" class="article-list">
+      <div class="article-card" onclick="showArticle('shift4')">
+        <div><span class="article-tag">FOUR</span><span class="article-tag">Investment Report</span></div>
+        <h3 style="margin-top:10px">Investment Report: Shift4 (FOUR)</h3>
+        <div class="article-meta">By Mitchel Quix · February 12, 2026 · Long / High Conviction</div>
+        <div class="article-preview">This article is written as an introduction to the company Shift4 for novice investors. When approaching an investment, I believe it's crucial to look beyond financial metrics — I want to understand the company culture, the management team, and then examine the financial data as proof.</div>
+      </div>
+    </div>
+    <div id="articleView" style="display:none"></div>
+  </div>
 </div>
 <footer>Made with 🤠 for Los Banditos · Prices updated daily via Alpha Vantage · Not financial advice</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -135,11 +169,11 @@ const logos = {
 
 /* ===== STOCK CONFIG (static - who gave what to whom) ===== */
 const CONFIG = [
-  {r:'Mitchel',g:'Lars',   s:'Robinhood',          t:'HOOD',cl:'#ff6b6b'},
-  {r:'Lars',   g:'Matijs', s:'The Trade Desk',      t:'TTD', cl:'#ffa63d'},
-  {r:'Eric',   g:'Remco',  s:'Genmab ADR',          t:'GMAB',cl:'#5bf0a5'},
+  {r:'Mitchel',g:'Lars',   s:'Robinhood',         t:'HOOD',cl:'#ff6b6b'},
+  {r:'Lars',   g:'Matijs', s:'The Trade Desk',     t:'TTD', cl:'#ffa63d'},
+  {r:'Eric',   g:'Remco',  s:'Genmab ADR',         t:'GMAB',cl:'#5bf0a5'},
   {r:'Remco',  g:'Rick',   s:'Twenty One Capital',  t:'XXI', cl:'#6c5ce7'},
-  {r:'Rick',   g:'Mitchel',s:'Shift4 Payments',      t:'FOUR',cl:'#fd79a8'},
+  {r:'Rick',   g:'Mitchel',s:'Shift4 Payments',     t:'FOUR',cl:'#fd79a8'},
   {r:'Matijs', g:'Eric',   s:'VanEck Defense ETF',  t:'DFEN',cl:'#00cec9'},
 ];
 
@@ -230,8 +264,7 @@ function buildRaceChart() {
   
   // Pre-compute YTD% for each stock on each date
   raceYTD = {};
-  let allValues = []; // Store all values to find absolute min/max
-  
+  let allValues = [];
   S.forEach(d => {
     raceYTD[d.t] = raceDates.map(dt => {
       const price = d.daily[dt];
@@ -241,11 +274,8 @@ function buildRaceChart() {
       return val;
     });
   });
-
-  // CALCULATE FIXED Y-AXIS RANGES (Prevents jumping)
-  const minVal = Math.min(...allValues, 0); // Include 0 to ensure start point is covered
-  const maxVal = Math.max(...allValues, 0);
-  const padding = (maxVal - minVal) * 0.1; // 10% padding
+  const yMin = Math.floor(Math.min(...allValues, 0) / 5) * 5 - 5;
+  const yMax = Math.ceil(Math.max(...allValues, 0) / 5) * 5 + 5;
   
   // Build full-year labels (Jan through Dec, ~21 trading days/month)
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -280,9 +310,30 @@ function buildRaceChart() {
     };
   });
   
+  // Zero-line plugin
+  const zeroLinePlugin = {
+    id: 'zeroLine',
+    beforeDraw(chart) {
+      const yScale = chart.scales.y;
+      const ctx = chart.ctx;
+      const yPixel = yScale.getPixelForValue(0);
+      if (yPixel >= chart.chartArea.top && yPixel <= chart.chartArea.bottom) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(chart.chartArea.left, yPixel);
+        ctx.lineTo(chart.chartArea.right, yPixel);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+  };
+
   raceChart = new Chart(ctx, {
     type: 'line',
     data: { labels: fullLabels, datasets },
+    plugins: [zeroLinePlugin],
     options: {
       responsive: true, maintainAspectRatio: false,
       animation: { duration: 0 },
@@ -303,7 +354,7 @@ function buildRaceChart() {
         tooltip: {
           backgroundColor: '#fff', borderColor: '#e0dbd4', borderWidth: 1,
           titleColor: '#1a1a1a', bodyColor: '#1a1a1a',
-          titleFont: { family: "'DM Sans',sans-serif", weight: '700', size: 13 },
+          titleFont: { family: "'Inter',sans-serif", weight: '700', size: 13 },
           bodyFont: { family: "'JetBrains Mono',monospace", size: 12 },
           callbacks: {
             label: c => {
@@ -320,14 +371,13 @@ function buildRaceChart() {
           grid: { color: 'rgba(0,0,0,.06)' },
           ticks: {
             color: '#6b6560',
-            font: { family: "'DM Sans',sans-serif", size: 10 },
+            font: { family: "'Inter',sans-serif", size: 10 },
             maxRotation: 0, autoSkip: true, maxTicksLimit: 12
           }
         },
         y: {
-          /* FIXED Y-AXIS CONFIGURATION */
-          min: Math.floor(minVal - padding),
-          max: Math.ceil(maxVal + padding),
+          min: yMin,
+          max: yMax,
           grid: { color: 'rgba(0,0,0,.06)' },
           ticks: {
             color: '#6b6560',
@@ -524,10 +574,142 @@ function buildBar() {
       },
       scales: {
         x: { grid: { color: 'rgba(0,0,0,.06)' }, ticks: { color: '#6b6560', font: { family: "'JetBrains Mono',monospace", size: 11 }, callback: v => (v>=0?'+':'') + v + '%' }},
-        y: { grid: { display: false }, ticks: { color: '#1a1a1a', font: { family: "'DM Sans',sans-serif", size: 12, weight: '600' }}}
+        y: { grid: { display: false }, ticks: { color: '#1a1a1a', font: { family: "'Inter',sans-serif", size: 12, weight: '600' }}}
       }
     }
   });
+}
+
+/* ===== ARTICLES ===== */
+const articles = {
+  shift4: `
+    <div class="article-full">
+      <button class="back-btn" onclick="hideArticle()">← Back to articles</button>
+      <div class="article-header">
+        <h1>Investment Report: Shift4 (FOUR)</h1>
+        <div class="meta">By Mitchel Quix · February 12, 2026 · Investment View: Long / High Conviction · Price at writing: $54.57</div>
+      </div>
+
+      <p>This article is written as an introduction to the company Shift4 for novice investors. When approaching an investment, I believe it's crucial to look beyond financial metrics like P/E ratios or Return on Invested Capital. I want to understand the company culture, the management team, and then examine the financial data as proof if management can execute on the company's culture.</p>
+
+      <div class="toc">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li>Introduction — How I discovered Shift4</li>
+          <li>The Business Model</li>
+          <li>The Founder</li>
+          <li>The Culture</li>
+          <li>Potential Catalyst 1: Depreciation Schedule</li>
+          <li>Potential Catalyst 2: FIFA World Cup</li>
+          <li>Acquisition Strategy</li>
+          <li>Financial Performance and Valuation</li>
+          <li>Risks</li>
+          <li>Conclusion</li>
+        </ol>
+      </div>
+
+      <h2>1. Introduction: How I discovered Shift4</h2>
+      <p>I found Shift4 almost by accident in early 2024. I was watching a video about Palantir online, and in the background, I saw a screen displaying the names of companies that are Palantir customers. At the time, I was obsessed with Palantir and figured that any company using their software must have a serious competitive advantage. I started digging into that list, and Shift4 was by far the most interesting one.</p>
+      <p>So, what is Shift4? The name comes from the keyboard combination "Shift + 4," which gives you the dollar sign ($). Honestly, the name is my least favorite part of the company.</p>
+      <p>In essence, Shift4 is a payment processing company. Think about the tablets or terminals you see in restaurants when you pay for your meal. That's their world.</p>
+
+      <h2>2. The Business Model</h2>
+      <p>Shift4 is a payment processing company that owns the entire financial transaction pipeline. A lot happens behind the scenes when you swipe your card at a restaurant, leading to the money from your account moving to the restaurant owner's bank account.</p>
+      <p>Traditionally, restaurants had to deal with a bunch of different companies handling small parts of the payment process. This was a nightmare when something went wrong because you'd end up in a finger-pointing situation. Shift4 solves this by acting as the <strong>single vendor for every step</strong>, instead of a transaction moving through multiple separate companies.</p>
+      <p>This "End-to-End" model is more efficient because Shift4 captures the entire margin, allowing them to offer businesses a lower overall price while providing higher reliability.</p>
+      <div class="highlight-box">
+        <strong>How Shift4 makes money:</strong><br>
+        ~90% of revenue from taking a small cut from every card transaction processed.<br>
+        ~10% from subscription and rent fees for using Shift4's products.
+      </div>
+
+      <h2>3. The Founder: From High School Dropout to Astronaut</h2>
+      <p>To understand this company, you have to understand the guy who built it, <strong>Jared Isaacman</strong>. His life story reads like a movie script.</p>
+      <p><strong>The Basement Origins.</strong> Jared Isaacman launched his company (originally named United Bank Card) in 1999 from his parents' basement in New Jersey when he was just 16 years old. He saw how hard it was for small businesses to take credit card payments — the approval process was too complex and took months. This 16-year-old saw a chance to fix this, quit school, and started a company to make the process easier.</p>
+      <p><strong>No outside investors:</strong> Starting from his parents' basement meant he didn't have early access to outside capital. He truly had to earn every dollar he spent. This necessity forced him to be <strong>extremely cost-disciplined</strong> from the beginning, instilling a DNA of financial discipline that remains a core part of Shift4 today.</p>
+      <p><strong>Not a typical Tech founder:</strong> While building Shift4, he also started Draken International, <strong>the world's largest private air force</strong> (150 fighter jets), which he later sold for hundreds of millions. In 2009 he broke the record of flying around the world in a light jet. He made history in 2021 as commander of Inspiration4, the first-ever all-civilian space mission, and later became the first private citizen to do a spacewalk during Polaris Dawn.</p>
+      <p><strong>Leading NASA:</strong> In 2025, he accepted President Trump's request to lead NASA, which led him to resign as CEO and appoint long-time friend Taylor Lauber as his successor. Within 50 days he announced plans to save NASA up to $1 billion annually — bringing the same efficiency focus from Shift4.</p>
+
+      <h2>4. The Culture — "The Shift4 Way"</h2>
+      <p>In 2021 it was announced that Shift4 will handle all payments for Starlink (part of SpaceX). They leverage this connection to support their international expansion. Shift4 frequently recruits former SpaceX employees, and even hired a former SpaceX executive as their Chief Information Officer.</p>
+      <p>Deeply influenced by the SpaceX culture, Isaacman adopted its business style and principles at Shift4, formalizing this approach as <strong>"The Shift4 Way"</strong> with eight core components:</p>
+      <div class="highlight-box">
+        <strong>The Shift4 Way — 8 Principles:</strong><br>
+        1. Stay Flat · 2. Communicate Often · 3. Quick & Data-Informed Decision Making · 4. Small Scrappy Teams · 5. Radical Ownership · 6. Procedurally Driven · 7. Delete the Parts · 8. Execute with Urgency
+      </div>
+      <p><strong>Shift4's link to Palantir:</strong> Their new CIO (a former SpaceX executive) proposed "Project Phoenix" — rebuilding Shift4's entire IT backbone on <strong>Palantir</strong> and Salesforce. Shift4 was one of the first companies to recognize Palantir's value, way before most others.</p>
+
+      <h2>5. Potential Catalyst 1 — Depreciation Schedule</h2>
+      <p>Shift4's SkyTab equipment uses a 4-year depreciation schedule. A $1,000 SkyTab costs $250/year on the books for four years. But these systems will last much longer than four years.</p>
+      <div class="highlight-box">
+        <strong>Years 1–4:</strong> Shift4 pays for hardware, profits look lower on paper.<br>
+        <strong>Years 5–7:</strong> Hardware fully "paid for" on the books, but merchants still using it and paying fees — <strong>revenue becomes almost pure profit.</strong>
+      </div>
+      <p>Since they've ramped up SkyTab deployments in the last two years, I expect profitability to increase significantly from 2027/2028 onwards — and I don't think the market has priced this in.</p>
+
+      <h2>6. Potential Catalyst 2 — FIFA 2026 World Cup</h2>
+      <p>Shift4 dominates the "Stadiums & Sports" payments vertical in the US, owning the most stadium contracts. They process payments in the stadium that hosted the Super Bowl.</p>
+      <div class="highlight-box">
+        <strong>Confirmed FIFA World Cup venues with Shift4:</strong><br>
+        🏟️ MetLife Stadium — Final<br>
+        🏟️ Hard Rock Stadium — Bronze Final<br>
+        🏟️ SoFi Stadium — Quarter-Final
+      </div>
+      <p>When millions of fans buy expensive beers and merchandise, Shift4 gets a cut of everything. Fun fact: they also won a contract for Barcelona's Camp Nou.</p>
+
+      <h2>7. Acquisition Strategy — "2+2=5"</h2>
+      <p>Shift4 has an exceptional track record of strategic acquisitions. Three recent examples:</p>
+      <p><strong>1. Vectron Systems (Germany):</strong> Instead of starting from scratch in Europe, they acquired this German cash register giant with 65,000 restaurant customers. They stripped away the low-margin hardware business and installed Shift4's payment software — turning a dying hardware business into a recurring revenue stream.</p>
+      <p><strong>2. Global Blue:</strong> The world leader in tax-free shopping (VAT refunds), used by Louis Vuitton, Prada, and Gucci. They waited patiently until they got a good price.</p>
+      <p><strong>3. Givex:</strong> Runs gift card programs for Nike, Marriott, and Wendy's. A "Trojan Horse" move — now Shift4 can say: "We already handle your gift cards safely. Why not let us handle your credit card processing too?"</p>
+
+      <h2>8. Financial Performance and Valuation</h2>
+      <p><strong>IPO Performance:</strong> Management overdelivered on all key metrics since their 2021 IPO — E2E volume grew at 52% CAGR, gross revenue at 37% CAGR, adjusted EBITDA at 59% CAGR, and adjusted FCF at an incredible 110% CAGR.</p>
+
+      <h3>Shift4 vs Toast comparison:</h3>
+      <div class="highlight-box">
+        <strong>Price to Forward Free Cash Flow:</strong> Shift4 = 8.48x vs Toast = 25x → Shift4 is <strong>4x cheaper</strong><br><br>
+        <strong>Margins (Shift4 vs Toast):</strong><br>
+        Gross margin: 36% vs 27%<br>
+        Operating margin: 8% vs 5%<br>
+        Free cash flow margin: 11% vs 9%<br>
+        EBITDA margin: 18% vs 5%
+      </div>
+
+      <p><strong>Share buybacks:</strong> The board authorized a $1 billion buyback through year-end 2026 — at ~$60 per share that's roughly 20% of the company. Management sounded extremely confident on the call.</p>
+      <p><strong>Insider ownership:</strong> Jared Isaacman still owns a massive <strong>24.7% of the company</strong>. He even increased his position in August 2025 at $82-83/share. You can now buy in lower than the founder's most recent purchase.</p>
+
+      <h2>9. Risks</h2>
+      <p><strong>1. Debt from acquisitions:</strong> Shift4 has built up significant debt, especially after Global Blue. However, the newest debt tranches don't require repayment until 2032-2033, providing ample time to integrate and realize benefits.</p>
+      <p><strong>2. Recession impact:</strong> Shift4 is vulnerable to recession — people cut back on restaurants and hotels first. However, at the current price of ~$55, much of this negativity may already be priced in.</p>
+
+      <h2>10. Conclusion</h2>
+      <p>I believe buying Shift4 at $54.57 offers an exceptional risk/reward trade-off. The stock price will eventually catch up to the consistently growing free cash flow.</p>
+      <div class="highlight-box">
+        <strong>The Investment Thesis:</strong><br>
+        ✅ <strong>Safety:</strong> High Growth / High Margin business<br>
+        ✅ <strong>Catalysts:</strong> 2026 World Cup + "gravy" profit from paid-off hardware<br>
+        ✅ <strong>Execution:</strong> Smart M&A machine + "The Shift4 Way" culture<br>
+        ✅ <strong>Valuation:</strong> 4x cheaper than Toast on forward FCF, with aggressive buybacks<br>
+        ✅ <strong>Alignment:</strong> Founder still owns 24.7%
+      </div>
+      <p>CEO Taylor Lauber and Jared Isaacman have explicitly stated their goal: reach a run rate of <strong>$1 billion in annual Free Cash Flow</strong>. In their latest earnings call, they confirmed they are on track.</p>
+
+      <p style="text-align:center;color:var(--mt);margin-top:32px;font-style:italic">— End of report —</p>
+    </div>
+  `
+};
+
+function showArticle(id) {
+  document.getElementById('articleList').style.display = 'none';
+  document.getElementById('articleView').style.display = 'block';
+  document.getElementById('articleView').innerHTML = articles[id];
+  window.scrollTo(0, 0);
+}
+
+function hideArticle() {
+  document.getElementById('articleList').style.display = 'grid';
+  document.getElementById('articleView').style.display = 'none';
 }
 
 /* ===== INIT ===== */
