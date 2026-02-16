@@ -83,8 +83,14 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
   </div>
   <div id="race" class="sec active">
     <div class="box">
-      <div class="rh"><div class="rt">🏇 The Great Bandito Race</div><div class="rd" id="rD">YTD Performance (%)</div></div>
+      <div class="rh"><div class="rt">🏇 The Great Bandito Race</div><div class="rd" id="rD">Jan 2, 2026</div></div>
       <div class="cw"><canvas id="rC"></canvas></div>
+      <div style="text-align:center;font-size:11px;color:var(--mt);margin-bottom:12px">TICKER → Receiver's name &nbsp;|&nbsp; Hover for full details incl. who gifted the stock</div>
+      <div class="rc">
+        <button class="btn p" id="sB" onclick="startRace()">▶ Start Race</button>
+        <button class="btn" onclick="pauseRace()">⏸ Pause</button>
+        <button class="btn" onclick="resetRace()">↺ Reset</button>
+      </div>
     </div>
   </div>
   <div id="lb" class="sec"><div id="lbC" class="lb"></div></div>
@@ -165,28 +171,47 @@ function switchTab(id) {
   if (id === 'stats' && !barBuilt) buildBar();
 }
 
-/* ===== RACE CHART (real daily data, no animation) ===== */
+/* ===== RACE CHART (animated, full year x-axis) ===== */
+let raceInterval = null, raceFrame = 0, raceDates = [], raceYTD = {};
+const TOTAL_TRADING_DAYS = 252; // ~252 trading days in a year
+
 function buildRaceChart() {
   const ctx = document.getElementById('rC').getContext('2d');
   
-  // Get all unique dates across all stocks, sorted
+  // Get actual data dates sorted
   const allDatesSet = new Set();
   D.forEach(d => Object.keys(d.daily).forEach(dt => allDatesSet.add(dt)));
-  const allDates = [...allDatesSet].sort();
+  raceDates = [...allDatesSet].sort();
   
-  // Format dates for labels
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const labels = allDates.map(dt => {
-    const [y, m, day] = dt.split('-');
-    return months[parseInt(m) - 1] + ' ' + parseInt(day);
-  });
-  
-  const datasets = S.map(d => {
-    const data = allDates.map(dt => {
+  // Pre-compute YTD% for each stock on each date
+  raceYTD = {};
+  S.forEach(d => {
+    raceYTD[d.t] = raceDates.map(dt => {
       const price = d.daily[dt];
       if (price === undefined) return null;
       return Math.round(((price - d.p0) / d.p0) * 10000) / 100;
     });
+  });
+  
+  // Build full-year labels (Jan through Dec, ~21 trading days/month)
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fullLabels = [];
+  for (let i = 0; i < TOTAL_TRADING_DAYS; i++) {
+    if (i < raceDates.length) {
+      const [y, m, day] = raceDates[i].split('-');
+      fullLabels.push(months[parseInt(m) - 1] + ' ' + parseInt(day));
+    } else {
+      // Future dates: estimate month from trading day index
+      const monthIdx = Math.min(11, Math.floor(i / 21));
+      const dayInMonth = (i % 21) + 1;
+      fullLabels.push(months[monthIdx] + ' ' + dayInMonth);
+    }
+  }
+  
+  // Create datasets starting with only the first data point
+  const datasets = S.map(d => {
+    const data = new Array(TOTAL_TRADING_DAYS).fill(null);
+    data[0] = 0; // Start at 0%
     return {
       label: d.t,
       data,
@@ -197,15 +222,16 @@ function buildRaceChart() {
       pointHoverRadius: 5,
       tension: 0.3,
       fill: false,
-      spanGaps: true
+      spanGaps: false
     };
   });
   
   raceChart = new Chart(ctx, {
     type: 'line',
-    data: { labels, datasets },
+    data: { labels: fullLabels, datasets },
     options: {
-      responsive: true, maintainAspectRatio: false, animation: { duration: 800 },
+      responsive: true, maintainAspectRatio: false,
+      animation: { duration: 0 },
       plugins: {
         legend: {
           position: 'bottom',
@@ -238,7 +264,7 @@ function buildRaceChart() {
         x: {
           grid: { color: 'rgba(255,255,255,.03)' },
           ticks: {
-            color: '#908898',
+            color: '#ffffff',
             font: { family: "'DM Sans',sans-serif", size: 10 },
             maxRotation: 0, autoSkip: true, maxTicksLimit: 12
           }
@@ -255,6 +281,71 @@ function buildRaceChart() {
       interaction: { intersect: false, mode: 'index' }
     }
   });
+  
+  raceFrame = 0;
+}
+
+function startRace() {
+  if (raceInterval) return;
+  document.getElementById('sB').textContent = '▶ Racing...';
+  
+  const totalFrames = raceDates.length;
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  
+  raceInterval = setInterval(() => {
+    if (raceFrame >= totalFrames) {
+      clearInterval(raceInterval);
+      raceInterval = null;
+      document.getElementById('sB').textContent = '▶ Replay';
+      confetti();
+      return;
+    }
+    
+    // Update each dataset with the next data point
+    S.forEach((d, i) => {
+      const val = raceYTD[d.t][raceFrame];
+      raceChart.data.datasets[i].data[raceFrame] = val;
+    });
+    
+    // Update date display
+    if (raceFrame < raceDates.length) {
+      const [y, m, day] = raceDates[raceFrame].split('-');
+      document.getElementById('rD').textContent = months[parseInt(m)-1] + ' ' + parseInt(day) + ', ' + y;
+    }
+    
+    raceChart.update();
+    raceFrame++;
+  }, 120);
+}
+
+function pauseRace() {
+  if (raceInterval) {
+    clearInterval(raceInterval);
+    raceInterval = null;
+    document.getElementById('sB').textContent = '▶ Resume';
+  }
+}
+
+function resetRace() {
+  clearInterval(raceInterval);
+  raceInterval = null;
+  raceFrame = 0;
+  document.getElementById('sB').textContent = '▶ Start Race';
+  document.getElementById('rD').textContent = 'Jan 2, 2026';
+  S.forEach((_, i) => {
+    raceChart.data.datasets[i].data = new Array(TOTAL_TRADING_DAYS).fill(null);
+    raceChart.data.datasets[i].data[0] = 0;
+  });
+  raceChart.update();
+}
+
+function confetti() {
+  const cols = ['#e8a825','#ff6b6b','#5bf0a5','#6c5ce7','#fd79a8','#00cec9','#ffa63d'];
+  for (let i = 0; i < 50; i++) {
+    const e = document.createElement('div');
+    e.style.cssText = 'position:fixed;width:'+(4+Math.random()*8)+'px;height:'+(4+Math.random()*8)+'px;top:-10px;left:'+Math.random()*100+'vw;background:'+cols[~~(Math.random()*cols.length)]+';border-radius:'+(Math.random()>.5?'50%':'2px')+';z-index:1000;animation:cf '+(2+Math.random()*2)+'s linear '+Math.random()*.5+'s forwards;pointer-events:none';
+    document.body.appendChild(e); setTimeout(() => e.remove(), 4500);
+  }
 }
 
 /* ===== LEADERBOARD ===== */
