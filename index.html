@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Banditos Stock Race 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0b0e;--sf:#171419;--sf2:#1f1b23;--bd:#2d2733;--tx:#eae6ef;--mt:#908898;--gold:#e8a825;--grn:#2dd67e;--red:#f04848}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(232,168,37,.04)0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(108,92,231,.04)0%,transparent 60%);pointer-events:none;z-index:0}
+.c{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+header{padding:40px 0 28px;text-align:center;position:relative}
+header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(232,168,37,.15),rgba(232,168,37,.04));border:1px solid rgba(232,168,37,.2);padding:5px 14px;border-radius:99px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Abril Fatface',serif;font-size:clamp(32px,7vw,72px);line-height:1.05;color:var(--gold);text-shadow:0 0 60px rgba(232,168,37,.15);margin-bottom:6px}
+.sub{color:var(--mt);font-size:15px}
+.upd{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mt);background:var(--sf);border:1px solid var(--bd);padding:3px 10px;border-radius:6px}
+.tabs{display:flex;gap:3px;justify-content:center;margin:28px 0 20px;background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:3px;width:fit-content;margin-left:auto;margin-right:auto;flex-wrap:wrap}
+.tab{padding:9px 20px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;color:var(--mt);transition:all .2s;border:none;background:none;font-family:inherit}
+.tab:hover{color:var(--tx)}.tab.active{background:var(--gold);color:#0d0b0e;box-shadow:0 2px 10px rgba(232,168,37,.3)}
+.sec{display:none;animation:fi .35s ease}.sec.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.box{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:28px;margin-bottom:28px;position:relative;overflow:hidden}
+.box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ff6b6b,#ffa63d,#5bf0a5,#6c5ce7,#fd79a8,#00cec9)}
+.rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.rt{font-family:'Abril Fatface',serif;font-size:22px}
+.rd{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold);font-weight:700}
+.cw{position:relative;height:400px;margin-bottom:16px}.cw canvas{width:100%!important;height:100%!important}
+.rc{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.btn{padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--bd);background:var(--sf2);color:var(--tx);font-family:inherit;transition:all .2s}
+.btn:hover{border-color:var(--gold);background:rgba(232,168,37,.08)}
+.btn.p{background:var(--gold);color:#0d0b0e;border-color:var(--gold)}.btn.p:hover{background:#f5c030}
+.lb{display:grid;gap:12px;margin-bottom:28px}
+.lc{display:grid;grid-template-columns:52px 56px 1fr auto;align-items:center;gap:14px;padding:18px 20px;background:var(--sf);border:1px solid var(--bd);border-radius:12px;transition:all .25s}
+.lc:hover{border-color:rgba(232,168,37,.3);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.lc.f1{border-color:rgba(232,168,37,.35);background:linear-gradient(135deg,var(--sf),rgba(232,168,37,.04))}
+.rk{font-family:'Abril Fatface',serif;font-size:28px;text-align:center}.rk.g{color:var(--gold)}.rk.s{color:#c0c0c0}.rk.b{color:#cd7f32}
+.avatar{width:48px;height:48px;border-radius:50%;border:2px solid var(--bd);overflow:hidden;flex-shrink:0}
+.avatar svg{width:100%;height:100%;display:block}
+.li h3{font-size:15px;font-weight:700;margin-bottom:3px}
+.lm{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.lm span{font-size:12px;color:var(--mt)}
+.stag{font-family:'JetBrains Mono',monospace;background:var(--sf2);padding:2px 7px;border-radius:4px;font-size:11px}
+.gdir{font-size:11px;color:var(--mt);margin-top:2px}
+.lv{text-align:right}.lp{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700}.le{font-size:12px;color:var(--mt);font-family:'JetBrains Mono',monospace}
+.pos{color:var(--grn)}.neg{color:var(--red)}
+.gs{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px;margin-bottom:28px}
+.gc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:22px;position:relative;overflow:hidden}
+.gc::after{content:'🎁';position:absolute;top:-8px;right:-4px;font-size:48px;opacity:.06}
+.gft{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.gp{text-align:center;min-width:70px}.gp .nm{font-weight:700;font-size:14px}.gp .rl{font-size:10px;color:var(--mt);text-transform:uppercase;letter-spacing:1px}
+.ga{font-size:18px;color:var(--gold)}
+.gsk{display:flex;align-items:center;gap:12px;padding:12px;background:var(--sf2);border-radius:8px;margin-bottom:14px}
+.glogo{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#fff;flex-shrink:0}
+.gtk{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;color:var(--gold)}.gn{font-size:12px;color:var(--mt)}
+.gpe{display:flex;justify-content:space-between;align-items:baseline}
+.gpr{font-size:12px;color:var(--mt);font-family:'JetBrains Mono',monospace}
+.gpv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:24px}
+.sc{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:16px;text-align:center}
+.sl{font-size:11px;color:var(--mt);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.sv{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700}
+.loading{text-align:center;padding:60px;color:var(--mt);font-size:16px}
+footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
+@keyframes cf{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@media(max-width:768px){.box{padding:16px}.gs{grid-template-columns:1fr}.sg{grid-template-columns:1fr 1fr}.cw{height:300px}.tab{padding:7px 14px;font-size:12px}.lc{grid-template-columns:36px 42px 1fr auto;gap:8px;padding:14px}.avatar{width:38px;height:38px}}
+</style>
+</head>
+<body>
+<div class="c">
+  <header>
+    <div class="badge">🤠 Los Banditos</div>
+    <h1>Stock Race 2026</h1>
+    <p class="sub">6 amigos · 6 stocks · €100 each · May the best bandito win</p>
+    <div class="upd" id="updDate">📅 Loading prices...</div>
+  </header>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('race')">🏇 Race</button>
+    <button class="tab" onclick="switchTab('lb')">🏆 Standings</button>
+    <button class="tab" onclick="switchTab('gifts')">🎁 Gifts</button>
+    <button class="tab" onclick="switchTab('stats')">📊 Stats</button>
+  </div>
+  <div id="race" class="sec active">
+    <div class="box">
+      <div class="rh"><div class="rt">🏇 The Great Bandito Race</div><div class="rd" id="rD">YTD Performance (%)</div></div>
+      <div class="cw"><canvas id="rC"></canvas></div>
+    </div>
+  </div>
+  <div id="lb" class="sec"><div id="lbC" class="lb"></div></div>
+  <div id="gifts" class="sec"><div id="gfC" class="gs"></div></div>
+  <div id="stats" class="sec"><div id="stG" class="sg"></div><div class="box"><div class="rt" style="margin-bottom:16px">📈 YTD Performance</div><div class="cw"><canvas id="bC"></canvas></div></div></div>
+</div>
+<footer>Made with 🤠 for Los Banditos · Prices updated daily via Alpha Vantage · Not financial advice</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+/* ===== CARTOON AVATARS ===== */
+const avatars = {};
+avatars.Remco = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f0c8a0"/><ellipse cx="50" cy="30" rx="30" ry="22" fill="#2c1810"/><path d="M25 32Q50 18 75 32Q72 24 50 20Q28 24 25 32Z" fill="#1a0e08"/><ellipse cx="38" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="50" r="2.5" fill="#3a2518"/><ellipse cx="62" cy="50" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="50" r="2.5" fill="#3a2518"/><path d="M30 44Q38 40 46 44" stroke="#2c1810" stroke-width="2" fill="none"/><path d="M54 44Q62 40 70 44" stroke="#2c1810" stroke-width="2" fill="none"/><path d="M40 65Q50 72 60 65" stroke="#c0462b" stroke-width="2.5" fill="#e05040"/><ellipse cx="50" cy="58" rx="5" ry="3" fill="#d4a080"/><rect x="20" y="78" width="60" height="22" rx="4" fill="#1a1a2e"/><rect x="35" y="80" width="30" height="20" rx="2" fill="#f0f0f0"/></svg>`;
+avatars.Mitchel = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#e8b888"/><ellipse cx="50" cy="28" rx="28" ry="20" fill="#1c0e06"/><path d="M22 36Q30 28 50 25Q70 28 78 36Q76 26 50 20Q24 26 22 36Z" fill="#0e0604"/><path d="M26 56Q24 68 30 76Q36 80 42 74L42 64Z" fill="#1c0e06"/><path d="M74 56Q76 68 70 76Q64 80 58 74L58 64Z" fill="#1c0e06"/><path d="M34 72Q42 82 50 80Q58 82 66 72Q58 78 50 76Q42 78 34 72Z" fill="#1c0e06"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#2a1808"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#2a1808"/><path d="M29 42Q38 38 47 42" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M53 42Q62 38 71 42" stroke="#1c0e06" stroke-width="2.5" fill="none"/><path d="M42 62Q50 68 58 62" stroke="#c0462b" stroke-width="2" fill="#d64040"/><ellipse cx="50" cy="56" rx="5" ry="2.5" fill="#d4a070"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#d4b896"/><rect x="34" y="82" width="32" height="18" rx="2" fill="#c8c8c8"/></svg>`;
+avatars.Eric = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#d4a070"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#1a0e06"/><path d="M28 34Q50 22 72 34Q68 24 50 22Q32 24 28 34Z" fill="#0e0604"/><ellipse cx="38" cy="50" rx="3.5" ry="4" fill="#fff"/><circle cx="38" cy="50" r="2.2" fill="#2a1808"/><ellipse cx="62" cy="50" rx="3.5" ry="4" fill="#fff"/><circle cx="62" cy="50" r="2.2" fill="#2a1808"/><path d="M30 46Q38 42 46 46" stroke="#1a0e06" stroke-width="2" fill="none"/><path d="M54 46Q62 42 70 46" stroke="#1a0e06" stroke-width="2" fill="none"/><path d="M38 65Q50 74 62 65" stroke="#c04030" stroke-width="2.5" fill="#d84838"/><ellipse cx="50" cy="57" rx="4.5" ry="2.5" fill="#c49060"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#a0a0a8"/><rect x="36" y="82" width="28" height="18" rx="2" fill="#d0d0d0"/></svg>`;
+avatars.Lars = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="52" r="35" fill="#f0c8a0"/><ellipse cx="50" cy="30" rx="30" ry="16" fill="#f0c8a0"/><path d="M20 35Q50 28 80 35Q78 30 50 28Q22 30 20 35Z" fill="#d4b090" opacity=".3"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#3a4858"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#3a4858"/><path d="M30 44Q38 41 46 44" stroke="#8a7060" stroke-width="2" fill="none"/><path d="M54 44Q62 41 70 44" stroke="#8a7060" stroke-width="2" fill="none"/><path d="M40 65Q50 72 60 65" stroke="#c0462b" stroke-width="2" fill="#d84838"/><ellipse cx="50" cy="56" rx="5" ry="2.8" fill="#e0b890"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#2a2a3a"/></svg>`;
+avatars.Rick = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#f5d0a8"/><ellipse cx="50" cy="30" rx="28" ry="18" fill="#b89868"/><path d="M24 36Q36 24 50 22Q64 24 76 36Q72 26 50 20Q28 26 24 36Z" fill="#a08050"/><path d="M26 36Q50 30 74 36Q72 34 50 32Q28 34 26 36Z" fill="#c0a870"/><circle cx="38" cy="48" r="9" fill="none" stroke="#c8b090" stroke-width="2"/><circle cx="62" cy="48" r="9" fill="none" stroke="#c8b090" stroke-width="2"/><line x1="47" y1="48" x2="53" y2="48" stroke="#c8b090" stroke-width="1.5"/><ellipse cx="38" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="38" cy="48" r="2.2" fill="#5080b0"/><ellipse cx="62" cy="48" rx="3.5" ry="4" fill="#fff"/><circle cx="62" cy="48" r="2.2" fill="#5080b0"/><path d="M31 43Q38 40 45 43" stroke="#907858" stroke-width="1.5" fill="none"/><path d="M55 43Q62 40 69 43" stroke="#907858" stroke-width="1.5" fill="none"/><path d="M42 64Q50 70 58 64" stroke="#c04030" stroke-width="2" fill="#d84838"/><ellipse cx="50" cy="56" rx="4" ry="2.5" fill="#e8c098"/><rect x="22" y="80" width="56" height="20" rx="4" fill="#f8f0e8"/></svg>`;
+avatars.Matijs = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#2a2035"/><circle cx="50" cy="54" r="34" fill="#e8b888"/><ellipse cx="50" cy="30" rx="26" ry="18" fill="#2c1a0e"/><path d="M26 36Q40 24 50 22Q60 24 74 36Q70 26 50 20Q30 26 26 36Z" fill="#1a0e06"/><path d="M34 68Q42 60 50 62Q58 60 66 68Q60 72 50 70Q40 72 34 68Z" fill="#2c1a0e"/><path d="M36 58Q34 64 36 68" stroke="#2c1a0e" stroke-width="3" fill="none"/><path d="M64 58Q66 64 64 68" stroke="#2c1a0e" stroke-width="3" fill="none"/><ellipse cx="38" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="38" cy="48" r="2.5" fill="#3a2818"/><ellipse cx="62" cy="48" rx="4" ry="4.5" fill="#fff"/><circle cx="62" cy="48" r="2.5" fill="#3a2818"/><path d="M29 43Q38 38 47 43" stroke="#2c1a0e" stroke-width="2.5" fill="none"/><path d="M53 43Q62 38 71 43" stroke="#2c1a0e" stroke-width="2.5" fill="none"/><path d="M42 62Q50 67 58 62" stroke="#c04030" stroke-width="2" fill="#d84838"/><ellipse cx="50" cy="55" rx="5" ry="2.5" fill="#d4a070"/><rect x="20" y="80" width="60" height="20" rx="4" fill="#f0ece8"/><circle cx="50" cy="86" r="2.5" fill="#2a7a3a"/></svg>`;
+
+const logos = {
+  HOOD:{bg:'#00C805',letter:'R',name:'Robinhood'},
+  TTD:{bg:'#00B140',letter:'T',name:'Trade Desk'},
+  GMAB:{bg:'#003B73',letter:'G',name:'Genmab'},
+  XXI:{bg:'#F7931A',letter:'₿',name:'XXI Capital'},
+  FOUR:{bg:'#5046E5',letter:'S4',name:'Shift4'},
+  DFEN:{bg:'#1B365D',letter:'D',name:'VanEck DFEN'}
+};
+
+/* ===== STOCK CONFIG (static - who gave what to whom) ===== */
+const CONFIG = [
+  {r:'Mitchel',g:'Lars',   s:'Robinhood',         t:'HOOD',cl:'#ff6b6b'},
+  {r:'Lars',   g:'Matijs', s:'The Trade Desk',     t:'TTD', cl:'#ffa63d'},
+  {r:'Eric',   g:'Remco',  s:'Genmab ADR',         t:'GMAB',cl:'#5bf0a5'},
+  {r:'Remco',  g:'Rick',   s:'Twenty One Capital',  t:'XXI', cl:'#6c5ce7'},
+  {r:'Rick',   g:'Mitchel',s:'Shift4 Payments',     t:'FOUR',cl:'#fd79a8'},
+  {r:'Matijs', g:'Eric',   s:'VanEck Defense ETF',  t:'DFEN',cl:'#00cec9'},
+];
+
+/* ===== LOAD PRICE DATA & BUILD EVERYTHING ===== */
+let D=[], S=[], raceChart=null, barBuilt=false;
+
+async function init() {
+  try {
+    const resp = await fetch('data/prices.json');
+    const json = await resp.json();
+    
+    // Build D array from config + live prices
+    D = CONFIG.map(c => {
+      const sd = json.stocks[c.t] || {};
+      const p0 = sd.p0 || 0;
+      const p1 = sd.p1 || p0;
+      const ytd = p0 ? ((p1 - p0) / p0) * 100 : 0;
+      const daily = sd.daily || {};
+      return { ...c, p0, p1, ytd, val: 100 * (p1 / p0), daily, currency: sd.currency || 'USD' };
+    });
+    S = [...D].sort((a, b) => b.ytd - a.ytd);
+    
+    // Update header date
+    const dates = Object.keys(D[0].daily).sort();
+    const lastDate = dates[dates.length - 1] || json.updated;
+    document.getElementById('updDate').textContent = '📅 Prices as of ' + lastDate;
+    
+    buildRaceChart();
+    buildLeaderboard();
+    buildGifts();
+    buildStats();
+  } catch (e) {
+    console.error('Failed to load prices:', e);
+    document.getElementById('updDate').textContent = '⚠️ Could not load prices';
+  }
+}
+
+/* ===== TAB SWITCHING ===== */
+function switchTab(id) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'stats' && !barBuilt) buildBar();
+}
+
+/* ===== RACE CHART (real daily data, no animation) ===== */
+function buildRaceChart() {
+  const ctx = document.getElementById('rC').getContext('2d');
+  
+  // Get all unique dates across all stocks, sorted
+  const allDatesSet = new Set();
+  D.forEach(d => Object.keys(d.daily).forEach(dt => allDatesSet.add(dt)));
+  const allDates = [...allDatesSet].sort();
+  
+  // Format dates for labels
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const labels = allDates.map(dt => {
+    const [y, m, day] = dt.split('-');
+    return months[parseInt(m) - 1] + ' ' + parseInt(day);
+  });
+  
+  const datasets = S.map(d => {
+    const data = allDates.map(dt => {
+      const price = d.daily[dt];
+      if (price === undefined) return null;
+      return Math.round(((price - d.p0) / d.p0) * 10000) / 100;
+    });
+    return {
+      label: d.t,
+      data,
+      borderColor: d.cl,
+      backgroundColor: d.cl + '10',
+      borderWidth: 2.5,
+      pointRadius: 0,
+      pointHoverRadius: 5,
+      tension: 0.3,
+      fill: false,
+      spanGaps: true
+    };
+  });
+  
+  raceChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: { duration: 800 },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            color: '#ffffff',
+            font: { family: "'JetBrains Mono',monospace", size: 12, weight: 'bold' },
+            padding: 16, usePointStyle: true, pointStyle: 'circle', boxWidth: 12,
+            generateLabels: ch => ch.data.datasets.map((ds, i) => ({
+              text: S[i].t,
+              fillStyle: S[i].cl, strokeStyle: S[i].cl, lineWidth: 3,
+              hidden: !ch.isDatasetVisible(i), datasetIndex: i, pointStyle: 'circle'
+            }))
+          }
+        },
+        tooltip: {
+          backgroundColor: '#1f1b23', borderColor: '#2d2733', borderWidth: 1,
+          titleFont: { family: "'DM Sans',sans-serif", weight: '700', size: 13 },
+          bodyFont: { family: "'JetBrains Mono',monospace", size: 12 },
+          callbacks: {
+            label: c => {
+              const v = c.parsed.y;
+              if (v === null) return '';
+              const d = S[c.datasetIndex];
+              return ' ' + d.t + ' → ' + d.r + ' (from ' + d.g + '): ' + (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,.03)' },
+          ticks: {
+            color: '#908898',
+            font: { family: "'DM Sans',sans-serif", size: 10 },
+            maxRotation: 0, autoSkip: true, maxTicksLimit: 12
+          }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,.04)' },
+          ticks: {
+            color: '#908898',
+            font: { family: "'JetBrains Mono',monospace", size: 11 },
+            callback: v => (v >= 0 ? '+' : '') + v + '%'
+          }
+        }
+      },
+      interaction: { intersect: false, mode: 'index' }
+    }
+  });
+}
+
+/* ===== LEADERBOARD ===== */
+function buildLeaderboard() {
+  const c = document.getElementById('lbC');
+  c.innerHTML = '';
+  S.forEach((d, i) => {
+    const rc = i===0?'g':i===1?'s':i===2?'b':'';
+    const fc = i===0?' f1':'';
+    const pc = d.ytd>=0?'pos':'neg';
+    const sg = d.ytd>=0?'+':'';
+    const tr = i===0?' 🏆':i===1?' 🥈':i===2?' 🥉':'';
+    const L = logos[d.t];
+    const cur = d.currency==='EUR'?'€':'$';
+    c.innerHTML += `<div class="lc${fc}">
+      <div class="rk ${rc}">${i+1}</div>
+      <div class="avatar">${avatars[d.r]}</div>
+      <div class="li">
+        <h3>${d.r}${tr}</h3>
+        <div class="lm">
+          <span class="stag" style="background:${L.bg};color:#fff;font-weight:700">${d.t}</span>
+          <span>${d.s}</span>
+        </div>
+        <div class="gdir">🎁 <strong>${d.g}</strong> gave this to <strong>${d.r}</strong></div>
+      </div>
+      <div class="lv">
+        <div class="lp ${pc}">${sg}${d.ytd.toFixed(1)}%</div>
+        <div class="le">€${d.val.toFixed(2)}</div>
+      </div>
+    </div>`;
+  });
+}
+
+/* ===== GIFTS ===== */
+function buildGifts() {
+  const c = document.getElementById('gfC');
+  c.innerHTML = '';
+  D.forEach(d => {
+    const pc = d.ytd>=0?'pos':'neg';
+    const sg = d.ytd>=0?'+':'';
+    const L = logos[d.t];
+    const cur = d.currency==='EUR'?'€':'$';
+    const dates = Object.keys(d.daily).sort();
+    const lastDate = dates.length ? dates[dates.length-1] : '?';
+    c.innerHTML += `<div class="gc">
+      <div class="gft">
+        <div class="gp">
+          <div class="rl">Giver</div>
+          <div class="avatar" style="width:40px;height:40px;margin:4px auto 0">${avatars[d.g]}</div>
+          <div class="nm">${d.g}</div>
+        </div>
+        <div class="ga">→ 🎁 →</div>
+        <div class="gp">
+          <div class="rl">Receiver</div>
+          <div class="avatar" style="width:40px;height:40px;margin:4px auto 0">${avatars[d.r]}</div>
+          <div class="nm">${d.r}</div>
+        </div>
+      </div>
+      <div class="gsk">
+        <div class="glogo" style="background:${L.bg}">${L.letter}</div>
+        <div><div class="gtk">${d.t}</div><div class="gn">${d.s}</div></div>
+      </div>
+      <div class="gpe">
+        <div>
+          <div class="gpr">${cur}${d.p0.toFixed(2)} → ${cur}${d.p1.toFixed(2)}</div>
+          <div style="font-size:10px;color:var(--mt);margin-top:2px">Jan 2 → ${lastDate}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="gpv ${pc}">${sg}${d.ytd.toFixed(1)}%</div>
+          <div class="le">€${d.val.toFixed(2)}</div>
+        </div>
+      </div>
+    </div>`;
+  });
+}
+
+/* ===== STATS ===== */
+function buildStats() {
+  const c = document.getElementById('stG');
+  const tot = D.reduce((s,d) => s+d.val, 0);
+  const avg = D.reduce((s,d) => s+d.ytd, 0) / D.length;
+  const best = S[0], worst = S[S.length-1];
+  const spread = best.ytd - worst.ytd;
+  c.innerHTML = `
+    <div class="sc"><div class="sl">Total Invested</div><div class="sv">€600</div></div>
+    <div class="sc"><div class="sl">Current Value</div><div class="sv ${tot>=600?'pos':'neg'}">€${tot.toFixed(0)}</div></div>
+    <div class="sc"><div class="sl">Avg Return</div><div class="sv ${avg>=0?'pos':'neg'}">${avg>=0?'+':''}${avg.toFixed(1)}%</div></div>
+    <div class="sc"><div class="sl">Leader</div><div class="sv pos">${best.r}</div></div>
+    <div class="sc"><div class="sl">Last Place</div><div class="sv neg">${worst.r}</div></div>
+    <div class="sc"><div class="sl">Spread</div><div class="sv" style="color:var(--gold)">${spread.toFixed(1)}pp</div></div>
+  `;
+}
+
+function buildBar() {
+  barBuilt = true;
+  const ctx = document.getElementById('bC').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: S.map(d => d.r + ' (' + d.t + ')'),
+      datasets: [{
+        data: S.map(d => d.ytd),
+        backgroundColor: S.map(d => d.ytd>=0 ? 'rgba(45,214,126,.7)' : 'rgba(240,72,72,.7)'),
+        borderColor: S.map(d => d.ytd>=0 ? '#2dd67e' : '#f04848'),
+        borderWidth: 1, borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1f1b23', borderColor: '#2d2733', borderWidth: 1,
+          bodyFont: { family: "'JetBrains Mono',monospace", size: 13 },
+          callbacks: { label: c => (c.raw>=0?'+':'') + c.raw.toFixed(1) + '%' }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#908898', font: { family: "'JetBrains Mono',monospace", size: 11 }, callback: v => (v>=0?'+':'') + v + '%' }},
+        y: { grid: { display: false }, ticks: { color: '#eae6ef', font: { family: "'DM Sans',sans-serif", size: 12, weight: '600' }}}
+      }
+    }
+  });
+}
+
+/* ===== INIT ===== */
+init();
+</script>
+</body>
+</html>
