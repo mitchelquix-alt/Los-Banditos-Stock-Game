@@ -109,9 +109,10 @@ def main():
         p0 = stock["p0"]
 
         ts = fetch_daily(stock["av_symbol"])
-        # Rate limit: wait 13s between calls (5 calls/min limit)
+        # Rate limit: wait 20s between calls (free tier is very strict)
         if i < len(STOCKS) - 1:
-            time.sleep(13)
+            print(f"  Waiting 20s for rate limit...")
+            time.sleep(20)
 
         if ts is None:
             if existing and ticker in existing.get("stocks", {}):
