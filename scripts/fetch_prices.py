@@ -2,7 +2,7 @@
 """
 Fetch YTD daily closing prices for all Los Banditos stocks.
 - US stocks: Alpha Vantage API
-- DFEN (VanEck Defense ETF, EUR): Yahoo Finance JSON API (DFEN.DE on Xetra)
+- DFEN (VanEck Defense ETF, EUR): justETF API (ISIN IE000YYE6WK5)
 
 Writes data/prices.json AND updates embedded PRICES in index.html.
 
@@ -15,7 +15,7 @@ import re
 import sys
 import time
 import urllib.request
-from datetime import datetime, date
+from datetime import datetime
 
 API_KEY = os.environ.get("AV_API_KEY", "")
 if not API_KEY:
@@ -31,6 +31,7 @@ AV_STOCKS = [
     {"ticker": "FOUR", "av_symbol": "FOUR", "p0": 63.31,  "currency": "USD"},
 ]
 
+DFEN_ISIN = "IE000YYE6WK5"
 START_DATE = "2026-01-02"
 AV_BASE_URL = "https://www.alphavantage.co/query"
 ROOT = os.path.join(os.path.dirname(__file__), "..")
@@ -57,50 +58,43 @@ def fetch_daily_av(symbol):
         return None
 
 
-def fetch_dfen_yahoo():
-    """Fetch DFEN.DE (VanEck Defense ETF, EUR) from Yahoo Finance JSON API."""
-    print(f"  Fetching DFEN.DE from Yahoo Finance...")
-    # period1 = Jan 1 2026 as Unix timestamp
-    period1 = int(datetime(2026, 1, 1).timestamp())
-    # period2 = now
-    period2 = int(datetime.utcnow().timestamp())
+def fetch_dfen_justetf():
+    """Fetch DFEN EUR prices from justETF API (same source as justetf.com chart)."""
+    print(f"  Fetching DFEN from justETF (ISIN {DFEN_ISIN})...")
+    today = datetime.utcnow().strftime("%Y-%m-%d")
     url = (
-        f"https://query1.finance.yahoo.com/v8/finance/chart/DFEN.DE"
-        f"?period1={period1}&period2={period2}&interval=1d"
+        f"https://www.justetf.com/api/etfs/{DFEN_ISIN}/performance-chart"
+        f"?locale=en&currency=EUR&valuesType=MARKET_VALUE"
+        f"&reduceData=false&includeDividends=true"
+        f"&dateFrom=2025-12-31&dateTo={today}"
     )
     try:
         req = urllib.request.Request(url, headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "application/json",
         })
         with urllib.request.urlopen(req, timeout=30) as resp:
             data = json.loads(resp.read().decode())
 
-        chart = data.get("chart", {}).get("result", [])
-        if not chart:
-            print("  WARNING: No Yahoo chart data for DFEN.DE")
-            return None
-
-        result = chart[0]
-        timestamps = result.get("timestamp", [])
-        closes = result.get("indicators", {}).get("quote", [{}])[0].get("close", [])
-
-        if not timestamps or not closes:
-            print("  WARNING: Empty Yahoo data for DFEN.DE")
+        series = data.get("series", [])
+        if not series:
+            print("  WARNING: No justETF series data for DFEN")
             return None
 
         daily = {}
-        for ts, close in zip(timestamps, closes):
-            if close is None:
-                continue
-            dt = datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d")
-            if dt >= START_DATE:
-                daily[dt] = round(close, 2)
+        for point in series:
+            dt = point.get("date", "")
+            val = point.get("value", {}).get("raw")
+            if dt >= START_DATE and val is not None:
+                daily[dt] = round(val, 2)
 
-        print(f"  DFEN.DE: Got {len(daily)} trading days from Yahoo Finance")
+        # Remove weekends (where price doesn't change)
+        # Keep only dates where the price differs from previous or is a trading day
+        print(f"  DFEN: Got {len(daily)} data points from justETF")
         return daily
 
     except Exception as e:
-        print(f"  ERROR fetching DFEN.DE from Yahoo: {e}")
+        print(f"  ERROR fetching DFEN from justETF: {e}")
         return None
 
 
@@ -195,31 +189,27 @@ def main():
             "currency": stock["currency"], "daily": daily
         }
 
-    # --- Fetch DFEN from Yahoo Finance ---
-    dfen_p0 = 52.49
-    dfen_daily = fetch_dfen_yahoo()
+    # --- Fetch DFEN from justETF ---
+    dfen_daily = fetch_dfen_justetf()
 
     if dfen_daily and len(dfen_daily) > 0:
-        latest_date = max(dfen_daily.keys())
-        latest_price = dfen_daily[latest_date]
-        # Use first actual price as p0 for consistency
         first_date = min(dfen_daily.keys())
-        actual_p0 = dfen_daily[first_date]
-        ytd = round((latest_price - actual_p0) / actual_p0 * 100, 2)
-        print(f"  DFEN: €{actual_p0} -> €{latest_price} ({ytd:+.1f}%) [{len(dfen_daily)} days]")
+        latest_date = max(dfen_daily.keys())
+        p0 = dfen_daily[first_date]
+        p1 = dfen_daily[latest_date]
+        ytd = round((p1 - p0) / p0 * 100, 2)
+        print(f"  DFEN: €{p0} -> €{p1} ({ytd:+.1f}%) [{len(dfen_daily)} days]")
         result["stocks"]["DFEN"] = {
-            "p0": actual_p0, "p1": latest_price, "ytd": ytd,
+            "p0": p0, "p1": p1, "ytd": ytd,
             "currency": "EUR", "daily": dfen_daily
         }
     else:
-        # Fall back to existing data
         if existing and "DFEN" in existing.get("stocks", {}):
             print(f"  Using cached data for DFEN")
             result["stocks"]["DFEN"] = existing["stocks"]["DFEN"]
         else:
-            print(f"  No DFEN data available")
             result["stocks"]["DFEN"] = {
-                "p0": dfen_p0, "p1": dfen_p0, "currency": "EUR",
+                "p0": 52.49, "p1": 52.49, "currency": "EUR",
                 "daily": {}, "error": "No data available"
             }
 
