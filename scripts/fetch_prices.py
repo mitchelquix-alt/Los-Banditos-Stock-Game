@@ -25,7 +25,7 @@ STOCKS = [
     {"ticker": "GMAB", "av_symbol": "GMAB", "p0": 31.18,  "currency": "USD"},
     {"ticker": "XXI",  "av_symbol": "XXI",  "p0": 8.85,   "currency": "USD"},
     {"ticker": "FOUR", "av_symbol": "FOUR", "p0": 63.31,  "currency": "USD"},
-    {"ticker": "DFEN", "av_symbol": "DFEN", "p0": 52.49,  "currency": "EUR"},
+    # DFEN (VanEck Defense ETF in EUR) is not on Alpha Vantage - uses embedded data only
 ]
 
 START_DATE = "2026-01-02"
@@ -148,6 +148,14 @@ def main():
     # Write prices.json
     out_path = os.path.join(ROOT, "data", "prices.json")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+    # Preserve data for stocks not fetched (e.g. DFEN EUR ETF)
+    if existing:
+        for ticker, data in existing.get("stocks", {}).items():
+            if ticker not in result["stocks"]:
+                print(f"  Preserving cached data for {ticker}")
+                result["stocks"][ticker] = data
+
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
     print(f"\nWritten to {out_path}")
