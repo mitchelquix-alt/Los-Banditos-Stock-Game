@@ -86,11 +86,12 @@ def fetch_dfen_justetf():
             dt = point.get("date", "")
             val = point.get("value", {}).get("raw")
             if dt >= START_DATE and val is not None:
-                daily[dt] = round(val, 2)
+                # Skip weekends (Sat=5, Sun=6)
+                d = datetime.strptime(dt, "%Y-%m-%d")
+                if d.weekday() < 5:
+                    daily[dt] = round(val, 2)
 
-        # Remove weekends (where price doesn't change)
-        # Keep only dates where the price differs from previous or is a trading day
-        print(f"  DFEN: Got {len(daily)} data points from justETF")
+        print(f"  DFEN: Got {len(daily)} trading days from justETF (weekends removed)")
         return daily
 
     except Exception as e:
