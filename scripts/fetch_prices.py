@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Fetch YTD daily closing prices from Alpha Vantage for all Los Banditos stocks.
-Writes data/prices.json AND updates the embedded PRICES in index.html.
+Fetch YTD daily closing prices for all Los Banditos stocks.
+- US stocks: Alpha Vantage API
+- DFEN (VanEck Defense ETF, EUR): Yahoo Finance JSON API (DFEN.DE on Xetra)
+
+Writes data/prices.json AND updates embedded PRICES in index.html.
 
 Usage: AV_API_KEY=xxx python3 fetch_prices.py
 """
@@ -12,43 +15,92 @@ import re
 import sys
 import time
 import urllib.request
-from datetime import datetime
+from datetime import datetime, date
 
 API_KEY = os.environ.get("AV_API_KEY", "")
 if not API_KEY:
     print("ERROR: Set AV_API_KEY environment variable")
     sys.exit(1)
 
-STOCKS = [
+# US stocks fetched via Alpha Vantage
+AV_STOCKS = [
     {"ticker": "HOOD", "av_symbol": "HOOD", "p0": 115.48, "currency": "USD"},
     {"ticker": "TTD",  "av_symbol": "TTD",  "p0": 38.19,  "currency": "USD"},
     {"ticker": "GMAB", "av_symbol": "GMAB", "p0": 31.18,  "currency": "USD"},
     {"ticker": "XXI",  "av_symbol": "XXI",  "p0": 8.85,   "currency": "USD"},
     {"ticker": "FOUR", "av_symbol": "FOUR", "p0": 63.31,  "currency": "USD"},
-    # DFEN (VanEck Defense ETF in EUR) is not on Alpha Vantage - uses embedded data only
 ]
 
 START_DATE = "2026-01-02"
-BASE_URL = "https://www.alphavantage.co/query"
+AV_BASE_URL = "https://www.alphavantage.co/query"
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 
 
-def fetch_daily(symbol):
+def fetch_daily_av(symbol):
+    """Fetch daily time series from Alpha Vantage."""
     url = (
-        f"{BASE_URL}?function=TIME_SERIES_DAILY"
+        f"{AV_BASE_URL}?function=TIME_SERIES_DAILY"
         f"&symbol={symbol}&outputsize=compact&apikey={API_KEY}"
     )
-    print(f"  Fetching {symbol}...")
+    print(f"  Fetching {symbol} from Alpha Vantage...")
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "LosBanditos/1.0"})
         with urllib.request.urlopen(req, timeout=30) as resp:
             data = json.loads(resp.read().decode())
         if "Time Series (Daily)" not in data:
-            print(f"  WARNING: No data for {symbol}: {data.get('Note', data.get('Information', data.get('Error Message', 'Unknown')))}")
+            msg = data.get("Note", data.get("Information", data.get("Error Message", "Unknown")))
+            print(f"  WARNING: No data for {symbol}: {msg}")
             return None
         return data["Time Series (Daily)"]
     except Exception as e:
         print(f"  ERROR fetching {symbol}: {e}")
+        return None
+
+
+def fetch_dfen_yahoo():
+    """Fetch DFEN.DE (VanEck Defense ETF, EUR) from Yahoo Finance JSON API."""
+    print(f"  Fetching DFEN.DE from Yahoo Finance...")
+    # period1 = Jan 1 2026 as Unix timestamp
+    period1 = int(datetime(2026, 1, 1).timestamp())
+    # period2 = now
+    period2 = int(datetime.utcnow().timestamp())
+    url = (
+        f"https://query1.finance.yahoo.com/v8/finance/chart/DFEN.DE"
+        f"?period1={period1}&period2={period2}&interval=1d"
+    )
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        })
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read().decode())
+
+        chart = data.get("chart", {}).get("result", [])
+        if not chart:
+            print("  WARNING: No Yahoo chart data for DFEN.DE")
+            return None
+
+        result = chart[0]
+        timestamps = result.get("timestamp", [])
+        closes = result.get("indicators", {}).get("quote", [{}])[0].get("close", [])
+
+        if not timestamps or not closes:
+            print("  WARNING: Empty Yahoo data for DFEN.DE")
+            return None
+
+        daily = {}
+        for ts, close in zip(timestamps, closes):
+            if close is None:
+                continue
+            dt = datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d")
+            if dt >= START_DATE:
+                daily[dt] = round(close, 2)
+
+        print(f"  DFEN.DE: Got {len(daily)} trading days from Yahoo Finance")
+        return daily
+
+    except Exception as e:
+        print(f"  ERROR fetching DFEN.DE from Yahoo: {e}")
         return None
 
 
@@ -71,7 +123,6 @@ def update_index_html(stocks_data):
         print("  WARNING: index.html not found, skipping embedded update")
         return
 
-    # Build the new PRICES JS object
     lines = ["const PRICES = {"]
     for ticker, sd in stocks_data.items():
         daily_str = json.dumps(sd.get("daily", {}), separators=(",", ":"))
@@ -82,7 +133,6 @@ def update_index_html(stocks_data):
     lines.append("};")
     new_prices = "\n".join(lines)
 
-    # Replace existing PRICES block
     pattern = r"const PRICES = \{[\s\S]*?\n\};"
     if re.search(pattern, html):
         html = re.sub(pattern, new_prices, html, count=1)
@@ -104,13 +154,13 @@ def main():
         "stocks": {}
     }
 
-    for i, stock in enumerate(STOCKS):
+    # --- Fetch US stocks from Alpha Vantage ---
+    for i, stock in enumerate(AV_STOCKS):
         ticker = stock["ticker"]
         p0 = stock["p0"]
 
-        ts = fetch_daily(stock["av_symbol"])
-        # Rate limit: wait 20s between calls (free tier is very strict)
-        if i < len(STOCKS) - 1:
+        ts = fetch_daily_av(stock["av_symbol"])
+        if i < len(AV_STOCKS) - 1:
             print(f"  Waiting 20s for rate limit...")
             time.sleep(20)
 
@@ -145,22 +195,42 @@ def main():
             "currency": stock["currency"], "daily": daily
         }
 
-    # Write prices.json
+    # --- Fetch DFEN from Yahoo Finance ---
+    dfen_p0 = 52.49
+    dfen_daily = fetch_dfen_yahoo()
+
+    if dfen_daily and len(dfen_daily) > 0:
+        latest_date = max(dfen_daily.keys())
+        latest_price = dfen_daily[latest_date]
+        # Use first actual price as p0 for consistency
+        first_date = min(dfen_daily.keys())
+        actual_p0 = dfen_daily[first_date]
+        ytd = round((latest_price - actual_p0) / actual_p0 * 100, 2)
+        print(f"  DFEN: €{actual_p0} -> €{latest_price} ({ytd:+.1f}%) [{len(dfen_daily)} days]")
+        result["stocks"]["DFEN"] = {
+            "p0": actual_p0, "p1": latest_price, "ytd": ytd,
+            "currency": "EUR", "daily": dfen_daily
+        }
+    else:
+        # Fall back to existing data
+        if existing and "DFEN" in existing.get("stocks", {}):
+            print(f"  Using cached data for DFEN")
+            result["stocks"]["DFEN"] = existing["stocks"]["DFEN"]
+        else:
+            print(f"  No DFEN data available")
+            result["stocks"]["DFEN"] = {
+                "p0": dfen_p0, "p1": dfen_p0, "currency": "EUR",
+                "daily": {}, "error": "No data available"
+            }
+
+    # --- Write prices.json ---
     out_path = os.path.join(ROOT, "data", "prices.json")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
-
-    # Preserve data for stocks not fetched (e.g. DFEN EUR ETF)
-    if existing:
-        for ticker, data in existing.get("stocks", {}).items():
-            if ticker not in result["stocks"]:
-                print(f"  Preserving cached data for {ticker}")
-                result["stocks"][ticker] = data
-
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
     print(f"\nWritten to {out_path}")
 
-    # Also update embedded data in index.html
+    # --- Update embedded data in index.html ---
     update_index_html(result["stocks"])
 
     print(f"Done! Updated: {result['updated']}")
