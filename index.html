@@ -92,19 +92,28 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
 .daily-quote{text-align:center;padding:16px 24px;margin-bottom:16px;background:linear-gradient(135deg,#faf8f5,#f5f0e8);border:1px solid var(--bd);border-radius:12px;font-family:'Inter',sans-serif}
 .daily-quote .dq-text{font-size:15px;font-style:italic;color:var(--tx);line-height:1.5;margin-bottom:6px}
 .daily-quote .dq-author{font-size:12px;color:var(--mt);font-weight:600;letter-spacing:0.3px}
-.cal-legend{font-size:12px;color:var(--mt);margin-bottom:16px}
-.cal-grid{display:flex;flex-direction:column;gap:0}
-.cal-month{display:grid;grid-template-columns:80px repeat(31,1fr);align-items:center;border-bottom:1px solid var(--bd)}
-.cal-month-label{font-weight:700;font-size:13px;color:var(--tx);padding:10px 0;font-family:'Inter',sans-serif}
-.cal-day{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:9px;border-radius:4px;position:relative}
-.cal-day.has-earnings{background:var(--ac);color:#fff;font-weight:700;cursor:pointer;font-size:8px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.15)}
-.cal-day.has-earnings:hover{transform:scale(1.3);z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-.cal-day.past-earnings{background:#d4c9b8;color:#fff;font-weight:700;font-size:8px;border-radius:6px;opacity:.6}
-.cal-day.today{outline:2px solid var(--ac);outline-offset:-1px;border-radius:6px}
-.cal-tooltip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap;z-index:10;pointer-events:none;display:none;font-family:'Inter',sans-serif}
-.cal-day:hover .cal-tooltip{display:block}
-.cal-header{display:grid;grid-template-columns:80px repeat(31,1fr);margin-bottom:2px}
-.cal-header span{font-size:9px;color:var(--mt);text-align:center;font-weight:600}
+.earnings-list{display:flex;flex-direction:column;gap:12px}
+.earnings-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;background:#faf8f5;border:1px solid var(--bd)}
+.earnings-item.past{opacity:.5}
+.earnings-item.upcoming{border-left:4px solid var(--ac)}
+.earnings-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.earnings-ticker{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:15px;min-width:52px}
+.earnings-info{flex:1}
+.earnings-company{font-size:14px;font-weight:600;color:var(--tx);font-family:'Inter',sans-serif}
+.earnings-detail{font-size:12px;color:var(--mt);margin-top:2px}
+.earnings-date{text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--tx);white-space:nowrap}
+.earnings-date .ed-sub{font-size:11px;font-weight:400;color:var(--mt)}
+.earnings-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:700;margin-left:8px}
+.earnings-badge.reported{background:#e8f5e9;color:#2e7d32}
+.earnings-badge.soon{background:#fff3e0;color:#e65100}
+.research-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.research-card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:20px;transition:transform .2s,box-shadow .2s}
+.research-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.research-card h3{font-family:'Inter',sans-serif;font-size:16px;margin:12px 0 14px;color:var(--tx)}
+.research-ticker{display:inline-block;color:#fff;font-weight:800;font-size:13px;padding:4px 12px;border-radius:6px;font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+.research-links{display:flex;flex-direction:column;gap:8px}
+.research-links a{color:var(--tx);text-decoration:none;font-size:13px;padding:8px 12px;border-radius:8px;background:#faf8f5;border:1px solid var(--bd);transition:background .2s,border-color .2s;font-family:'Inter',sans-serif}
+.research-links a:hover{background:#f0ebe3;border-color:var(--ac)}
 </style>
 </head>
 <body>
@@ -124,6 +133,7 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
     <button class="tab" onclick="switchTab('stats')">📊 Stats</button>
     <button class="tab" onclick="switchTab('articles')">📝 Articles</button>
     <button class="tab" onclick="switchTab('calendar')">📅 Calendar</button>
+    <button class="tab" onclick="switchTab('research')">🔗 Research</button>
   </div>
   <div id="race" class="sec active">
     <div class="box">
@@ -154,9 +164,76 @@ footer{text-align:center;padding:28px 0 40px;color:var(--mt);font-size:12px}
   </div>
   <div id="calendar" class="sec">
     <div class="box">
-      <div class="rt" style="margin-bottom:20px">📅 Earnings Calendar 2026</div>
-      <div class="cal-legend">Upcoming earnings are highlighted. Past earnings are dimmed. DFEN is an ETF and has no earnings.</div>
-      <div id="calGrid" class="cal-grid"></div>
+      <div class="rt" style="margin-bottom:20px">📅 Upcoming Earnings</div>
+      <div id="earningsList" class="earnings-list"></div>
+      <div style="font-size:11px;color:var(--mt);margin-top:16px">XXI (Twenty One Capital) — no confirmed date yet &nbsp;·&nbsp; DFEN — ETF, no earnings</div>
+    </div>
+  </div>
+  <div id="research" class="sec">
+    <div class="box">
+      <div class="rt" style="margin-bottom:20px">🔗 Research & Investor Relations</div>
+      <div class="research-grid">
+        <div class="research-card">
+          <div class="research-ticker" style="background:#e74c3c">HOOD</div>
+          <h3>Robinhood Markets</h3>
+          <div class="research-links">
+            <a href="https://investors.robinhood.com/" target="_blank">📊 Investor Relations</a>
+            <a href="https://finance.yahoo.com/quote/HOOD/" target="_blank">📈 Yahoo Finance</a>
+            <a href="https://seekingalpha.com/symbol/HOOD" target="_blank">📝 Seeking Alpha</a>
+            <a href="https://www.nasdaq.com/market-activity/stocks/hood" target="_blank">💹 Nasdaq</a>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-ticker" style="background:#f39c12">TTD</div>
+          <h3>The Trade Desk</h3>
+          <div class="research-links">
+            <a href="https://www.thetradedesk.com/us/about-us/investor-relations" target="_blank">📊 Investor Relations</a>
+            <a href="https://finance.yahoo.com/quote/TTD/" target="_blank">📈 Yahoo Finance</a>
+            <a href="https://seekingalpha.com/symbol/TTD" target="_blank">📝 Seeking Alpha</a>
+            <a href="https://www.nasdaq.com/market-activity/stocks/ttd" target="_blank">💹 Nasdaq</a>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-ticker" style="background:#2ecc71">GMAB</div>
+          <h3>Genmab</h3>
+          <div class="research-links">
+            <a href="https://ir.genmab.com/" target="_blank">📊 Investor Relations</a>
+            <a href="https://finance.yahoo.com/quote/GMAB/" target="_blank">📈 Yahoo Finance</a>
+            <a href="https://seekingalpha.com/symbol/GMAB" target="_blank">📝 Seeking Alpha</a>
+            <a href="https://www.nasdaq.com/market-activity/stocks/gmab" target="_blank">💹 Nasdaq</a>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-ticker" style="background:#9b59b6">XXI</div>
+          <h3>Twenty One Capital</h3>
+          <div class="research-links">
+            <a href="https://xxi.money" target="_blank">📊 Company Website</a>
+            <a href="https://finance.yahoo.com/quote/XXI/" target="_blank">📈 Yahoo Finance</a>
+            <a href="https://seekingalpha.com/symbol/XXI" target="_blank">📝 Seeking Alpha</a>
+            <a href="https://bitcointreasuries.net/public-companies/xxi" target="_blank">₿ BTC Treasury</a>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-ticker" style="background:#e91e8e">FOUR</div>
+          <h3>Shift4 Payments</h3>
+          <div class="research-links">
+            <a href="https://investors.shift4.com/" target="_blank">📊 Investor Relations</a>
+            <a href="https://finance.yahoo.com/quote/FOUR/" target="_blank">📈 Yahoo Finance</a>
+            <a href="https://seekingalpha.com/symbol/FOUR" target="_blank">📝 Seeking Alpha</a>
+            <a href="https://www.nasdaq.com/market-activity/stocks/four" target="_blank">💹 Nasdaq</a>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-ticker" style="background:#1abc9c">DFEN</div>
+          <h3>VanEck Defense ETF</h3>
+          <div class="research-links">
+            <a href="https://www.vaneck.com/dk/en/investments/defense-etf/" target="_blank">📊 VanEck Fund Page</a>
+            <a href="https://www.justetf.com/en/etf-profile.html?isin=IE000YYE6WK5" target="_blank">📈 justETF</a>
+            <a href="https://www.tradingview.com/symbols/XETR-DFEN/" target="_blank">📉 TradingView</a>
+            <a href="https://finance.yahoo.com/quote/DFEN.DE/" target="_blank">💹 Yahoo Finance</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -618,85 +695,38 @@ function buildBar() {
 
 /* ===== EARNINGS CALENDAR ===== */
 const EARNINGS = [
-  {ticker:"HOOD",color:"#e74c3c",dates:[
-    {date:"2026-02-10",q:"Q4 2025",time:"After Close"},
-    {date:"2026-04-29",q:"Q1 2026",time:"After Close (Est.)"},
-    {date:"2026-07-29",q:"Q2 2026",time:"After Close (Est.)"},
-    {date:"2026-10-28",q:"Q3 2026",time:"After Close (Est.)"},
-  ]},
-  {ticker:"TTD",color:"#f39c12",dates:[
-    {date:"2026-02-25",q:"Q4 2025",time:"After Close"},
-    {date:"2026-05-13",q:"Q1 2026",time:"After Close (Est.)"},
-    {date:"2026-08-12",q:"Q2 2026",time:"After Close (Est.)"},
-    {date:"2026-11-11",q:"Q3 2026",time:"After Close (Est.)"},
-  ]},
-  {ticker:"GMAB",color:"#2ecc71",dates:[
-    {date:"2026-02-17",q:"Q4 2025",time:"Before Open"},
-    {date:"2026-05-06",q:"Q1 2026",time:"Before Open (Est.)"},
-    {date:"2026-08-05",q:"Q2 2026",time:"Before Open (Est.)"},
-    {date:"2026-11-04",q:"Q3 2026",time:"Before Open (Est.)"},
-  ]},
-  {ticker:"XXI",color:"#9b59b6",dates:[]},
-  {ticker:"FOUR",color:"#e91e8e",dates:[
-    {date:"2026-02-26",q:"Q4 2025",time:"Before Open"},
-    {date:"2026-05-07",q:"Q1 2026",time:"Before Open (Est.)"},
-    {date:"2026-08-06",q:"Q2 2026",time:"Before Open (Est.)"},
-    {date:"2026-11-05",q:"Q3 2026",time:"Before Open (Est.)"},
-  ]},
+  {ticker:"HOOD",company:"Robinhood Markets",color:"#e74c3c",date:"2026-02-10",q:"Q4 2025",time:"After Close"},
+  {ticker:"GMAB",company:"Genmab",color:"#2ecc71",date:"2026-02-17",q:"Q4 2025",time:"Before Open"},
+  {ticker:"TTD",company:"The Trade Desk",color:"#f39c12",date:"2026-02-25",q:"Q4 2025",time:"After Close"},
+  {ticker:"FOUR",company:"Shift4 Payments",color:"#e91e8e",date:"2026-02-26",q:"Q4 2025",time:"Before Open"},
 ];
 
 function buildCalendar() {
-  const grid = document.getElementById('calGrid');
-  if (!grid) return;
+  const list = document.getElementById('earningsList');
+  if (!list) return;
+  const today = new Date().toISOString().slice(0,10);
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
-  const today = new Date();
-  const todayStr = today.toISOString().slice(0,10);
 
-  // Build lookup: date -> [{ticker, color, q, time}]
-  const earningsMap = {};
-  EARNINGS.forEach(e => {
-    e.dates.forEach(d => {
-      if (!earningsMap[d.date]) earningsMap[d.date] = [];
-      earningsMap[d.date].push({ticker:e.ticker, color:e.color, q:d.q, time:d.time});
-    });
-  });
+  list.innerHTML = EARNINGS.map(e => {
+    const isPast = e.date < today;
+    const isToday = e.date === today;
+    const d = new Date(e.date + 'T12:00:00');
+    const dayName = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+    const dateLabel = dayName + ', ' + months[d.getMonth()] + ' ' + d.getDate();
+    const badge = isPast ? '<span class="earnings-badge reported">✓ Reported</span>' :
+                  isToday ? '<span class="earnings-badge soon">📢 Today!</span>' :
+                  '<span class="earnings-badge soon">Upcoming</span>';
 
-  // Header row with day numbers
-  let headerHtml = '<div class="cal-header"><span></span>';
-  for (let d = 1; d <= 31; d++) headerHtml += '<span>' + d + '</span>';
-  headerHtml += '</div>';
-  grid.innerHTML = headerHtml;
-
-  // Month rows
-  months.forEach((m, mi) => {
-    let row = '<div class="cal-month"><div class="cal-month-label">' + m + '</div>';
-    for (let d = 1; d <= 31; d++) {
-      if (d > daysInMonth[mi]) {
-        row += '<div class="cal-day"></div>';
-        continue;
-      }
-      const dateStr = '2026-' + String(mi+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
-      const events = earningsMap[dateStr];
-      const isToday = dateStr === todayStr;
-      const isPast = dateStr < todayStr;
-
-      if (events) {
-        const tickers = events.map(e => e.ticker).join(', ');
-        const cls = isPast ? 'cal-day past-earnings' : 'cal-day has-earnings';
-        const tooltipLines = events.map(e => e.ticker + ' — ' + e.q + ' (' + e.time + ')').join('<br>');
-        // Use first event color for the dot, or gradient if multiple
-        const bg = events.length === 1 ? events[0].color : 'linear-gradient(135deg,' + events.map(e=>e.color).join(',') + ')';
-        row += '<div class="' + cls + (isToday ? ' today' : '') + '" style="background:' + bg + '">' +
-          tickers.split(', ').map(t => t.slice(0,2)).join('') +
-          '<div class="cal-tooltip">' + tooltipLines + '</div></div>';
-      } else {
-        row += '<div class="cal-day' + (isToday ? ' today' : '') + '"></div>';
-      }
-    }
-    row += '</div>';
-    grid.innerHTML += row;
-  });
+    return '<div class="earnings-item ' + (isPast ? 'past' : 'upcoming') + '">' +
+      '<div class="earnings-dot" style="background:' + e.color + '"></div>' +
+      '<div class="earnings-ticker">' + e.ticker + '</div>' +
+      '<div class="earnings-info">' +
+        '<div class="earnings-company">' + e.company + badge + '</div>' +
+        '<div class="earnings-detail">' + e.q + ' · ' + e.time + '</div>' +
+      '</div>' +
+      '<div class="earnings-date">' + dateLabel + '<div class="ed-sub">' + e.date + '</div></div>' +
+    '</div>';
+  }).join('');
 }
 
 /* ===== DAILY QUOTE ===== */
